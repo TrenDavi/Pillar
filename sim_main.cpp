@@ -1,0 +1,41 @@
+#include <verilated.h>
+#include "Vtop.h"
+
+vluint64_t main_time = 0;
+double sc_time_stamp() {
+    return main_time;
+}
+
+int main(int argc, char** argv, char** env) {
+    if (0 && argc && argv && env) {}
+
+    Verilated::debug(0);
+    Verilated::randReset(2);
+    Verilated::traceEverOn(true);
+    Verilated::commandArgs(argc, argv);
+    Verilated::mkdir("logs");
+
+    Vtop* top = new Vtop;
+
+    top->clk = 0;
+    while (!Verilated::gotFinish()) {
+        ++main_time;
+        top->clk = !top->clk;
+        top->reset = (main_time < 10) ? 1 : 0;
+        if (main_time < 5) {
+            VerilatedCov::zero();
+        }
+        top->eval();
+    }
+
+    top->final();
+
+#if VM_COVERAGE
+    Verilated::mkdir("logs");
+    VerilatedCov::write("logs/coverage.dat");
+#endif
+
+    delete top;
+    top = NULL;
+    exit(0);
+}
