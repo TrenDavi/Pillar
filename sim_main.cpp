@@ -7,8 +7,6 @@ double sc_time_stamp() {
 }
 
 int main(int argc, char** argv, char** env) {
-    if (0 && argc && argv && env) {}
-
     Verilated::debug(0);
     Verilated::randReset(2);
     Verilated::traceEverOn(true);
@@ -36,6 +34,5 @@ int main(int argc, char** argv, char** env) {
 #endif
 
     delete top;
-    top = NULL;
-    exit(0);
+    return 0;
 }
