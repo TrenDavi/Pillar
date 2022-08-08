@@ -1,8 +1,8 @@
 # Logs
-logs/
+/logs
 
 # Object files
-obj_dir/
+/obj_dir
 
 # Vim
 *.swp
