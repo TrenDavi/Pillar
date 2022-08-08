@@ -49,7 +49,7 @@ VERILATOR_COV_FLAGS += --write-info logs/coverage.info
 VERILATOR_COV_FLAGS += logs/coverage.dat
 
 ######################################################################
-#default: run
+default: run
 
 run:
 	@echo "------- start -------"
