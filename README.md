@@ -1,5 +1,5 @@
-## Emu-Arch
-RISC-V Architecture Emulator in Verilog
+## RISC-V
+RISC-V Architecture Emulator in C++/Verilog
 
 
 ### Memory Map
