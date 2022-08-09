@@ -1,5 +1,7 @@
+#include <iostream>
 #include <verilated.h>
 #include "Vtop.h"
+#include "Vtop_ram.h"
 
 vluint64_t main_time = 0;
 double sc_time_stamp() {
@@ -8,12 +10,13 @@ double sc_time_stamp() {
 
 int main(int argc, char** argv, char** env) {
     Verilated::debug(0);
-    Verilated::randReset(2);
+    Verilated::randReset(0);
     Verilated::traceEverOn(true);
     Verilated::commandArgs(argc, argv);
     Verilated::mkdir("logs");
 
     Vtop* top = new Vtop;
+    Vtop_ram* ram = new Vtop_ram;
 
     top->clk = 0;
     while (!Verilated::gotFinish()) {
@@ -24,9 +27,12 @@ int main(int argc, char** argv, char** env) {
             VerilatedCov::zero();
         }
         top->eval();
-    }
 
-    top->final();
+	if(main_time > 100) {
+            break;
+	}
+    }
+      top->final();
 
 #if VM_COVERAGE
     Verilated::mkdir("logs");
