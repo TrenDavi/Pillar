@@ -12,7 +12,7 @@ module counter
          else
             b <= 1;
       else 
-         b <= 0;
+         b <= 1;
    end
 
    assign out = b;
