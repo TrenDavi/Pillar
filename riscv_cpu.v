@@ -4,17 +4,28 @@ module riscv_cpu
    input wire reset,
    // RAM
    output reg we_o,
-   output wire [31:0] addr_o,
+   output reg [31:0] addr_o,
    input wire [31:0] data_i,
-   output wire [31:0] data_o
+   output reg [31:0] data_o
 );
-   assign addr_o = 32'b11;
-   assign data_o = 32'b100;
+   // Stage counter 
+   wire [2:0]  stage_o;
+
+   // Stage counter
+   counter stage (
+           .clk (clk),
+           .reset (reset),
+           .out (stage_o));
+
 
    always_ff @ (posedge clk) begin
       if (reset) begin
          we_o <= 0;
+	 addr_o <= 32'b0;
+	 data_o <= 32'b0;
       end
+
+      $display("stage: %b", stage_o);
    end   
 
 endmodule
