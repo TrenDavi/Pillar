@@ -15,6 +15,8 @@ endif
 VERILATOR_FLAGS =
 # Generate C++ in executable form
 VERILATOR_FLAGS += -cc --exe
+# Allow timed statements
+VERILATOR_FLAGS += -Wno-STMTDLY
 # Generate makefile dependencies (not shown as complicates the Makefile)
 #VERILATOR_FLAGS += -MMD
 # Optimize

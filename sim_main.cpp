@@ -16,7 +16,6 @@ int main(int argc, char** argv, char** env) {
     Verilated::mkdir("logs");
 
     Vtop* top = new Vtop;
-    Vtop_ram* ram = new Vtop_ram;
 
     top->clk = 0;
     while (!Verilated::gotFinish()) {
@@ -28,11 +27,11 @@ int main(int argc, char** argv, char** env) {
         }
         top->eval();
 
-	if(main_time > 100) {
+	if(main_time > 25) {
             break;
 	}
     }
-      top->final();
+    top->final();
 
 #if VM_COVERAGE
     Verilated::mkdir("logs");

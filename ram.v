@@ -11,21 +11,18 @@ module ram
    reg [31:0] ram [2**16:0] /*verilator public*/;
    reg [31:0] q_addr_a; 
 
-   always @(posedge clk)
-      begin
-         if (we)
+   always @(posedge clk) begin
+      if (we) begin
             ram[addr] <= data_i;
             q_addr_a <= addr;
+      end
    end
 
    assign data_o = ram[q_addr_a];
 
-   integer i;
    initial begin
+      // Load program into memory
       $readmemh("test.bin", ram);
-      for (i=0;i<5;i=i+1) begin
-         $displayh(ram[i]);
-      end
    end
 
 endmodule
