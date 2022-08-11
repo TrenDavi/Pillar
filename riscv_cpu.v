@@ -8,14 +8,15 @@ module riscv_cpu
    input wire [31:0] data_i,
    output reg [31:0] data_o
 );
-   // Stage counter 
-   wire [2:0]  stage_o;
+   // Control unit
+   control control_unit (
+	   .clk (clk),
+	   .reset (reset));
 
-   // Stage counter
-   counter stage (
-           .clk (clk),
-           .reset (reset),
-           .out (stage_o));
+   // Fetch unit
+   fetch fetch_unit (
+	   .clk (clk),
+	   .reset (reset));
 
 
    always_ff @ (posedge clk) begin
@@ -24,8 +25,6 @@ module riscv_cpu
 	 addr_o <= 32'b0;
 	 data_o <= 32'b0;
       end
-
-      $display("stage: %b", stage_o);
    end   
 
 endmodule

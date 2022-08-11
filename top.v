@@ -17,7 +17,7 @@ module top
 	   .addr (cpu_to_ram_addr),
 	   .data_i (cpu_to_ram_data),
 	   .data_o (ram_to_cpu_data));
-
+   
    // CPU
    riscv_cpu cpu0 (
 	   .clk (clk),
