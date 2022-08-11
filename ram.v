@@ -19,10 +19,4 @@ module ram
    end
 
    assign data_o = ram[q_addr_a];
-
-   initial begin
-      // Load program into memory
-      $readmemh("test.bin", ram);
-   end
-
 endmodule

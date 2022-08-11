@@ -6,3 +6,9 @@
 
 # Vim
 *.swp
+
+# Output
+*.out
+
+# VCD tracking
+*.vcd

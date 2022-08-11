@@ -18,8 +18,7 @@ module riscv_cpu
 	   .clk (clk),
 	   .reset (reset));
 
-
-   always_ff @ (posedge clk) begin
+   always @ (posedge clk) begin
       if (reset) begin
          we_o <= 0;
 	 addr_o <= 32'b0;

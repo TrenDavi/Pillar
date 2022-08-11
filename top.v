@@ -1,13 +1,26 @@
-module top
-(
-   input wire clk,
-   input wire reset
-);
+module top ();
    // RAM
    wire [31:0] cpu_to_ram_addr;
    wire        cpu_to_ram_we;
    wire [31:0] ram_to_cpu_data;
    wire [31:0] cpu_to_ram_data;
+   
+   // Clock
+   wire clk;
+   reg reset = 1;
+   
+   initial begin
+      // GTKwave debug output
+      $dumpfile("wave.vcd");
+      $dumpvars(0,top);
+
+      // Reset CPU
+      #10 reset = 0;
+   end
+   
+   // Clock
+   clock clock0 (
+	   .clk_o (clk));
    
    // RAM
    ram ram0 (

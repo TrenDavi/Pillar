@@ -11,8 +11,4 @@ module control
            .clk (clk),
            .reset (reset),
            .out (stage_o));
-
-   always @ (posedge clk) begin
-      $display("r: %b, s: %d", reset, stage_o);
-   end
 endmodule

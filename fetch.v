@@ -5,7 +5,7 @@ module fetch
 );
    reg [31:0] pc; // Program Counter
    
-   always_ff @ (posedge clk) begin
+   always @ (posedge clk) begin
       if (reset) begin
 	 // Reset Vector is placed at 0
 	 // during a reset
