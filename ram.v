@@ -9,14 +9,18 @@ module ram
 );
 
    reg [31:0] ram [2**16:0] /*verilator public*/;
-   reg [31:0] q_addr_a; 
 
    always @(posedge clk) begin
       if (we) begin
             ram[addr] <= data_i;
-            q_addr_a <= addr;
       end
    end
 
-   assign data_o = ram[q_addr_a];
+   assign data_o = ram[addr];
+
+   initial begin
+      for (integer i = 0; i < 2**16; i = i + 1) begin
+         ram[i] = 5; 
+      end
+   end
 endmodule

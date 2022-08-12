@@ -3,27 +3,28 @@ module riscv_cpu
    input wire clk,
    input wire reset,
    // RAM
-   output reg we_o,
-   output reg [31:0] addr_o,
+   output wire we_o,
+   output wire [31:0] addr_o,
    input wire [31:0] data_i,
-   output reg [31:0] data_o
+   output wire [31:0] data_o
 );
+   wire pc_readin_o;
+
    // Control unit
    control control_unit (
 	   .clk (clk),
-	   .reset (reset));
+	   .reset (reset),
+      // RAM
+      .we_o (we_o),
+      .addr_o (addr_o),
+      .data_i (data_i),
+      .data_o (data_o),
+      .pc_readin_o (pc_readin_o));
 
    // Fetch unit
    fetch fetch_unit (
 	   .clk (clk),
-	   .reset (reset));
-
-   always @ (posedge clk) begin
-      if (reset) begin
-         we_o <= 0;
-	 addr_o <= 32'b0;
-	 data_o <= 32'b0;
-      end
-   end   
-
+	   .reset (reset),
+      .data_i (data_i),
+      .pc_readin (pc_readin_o));
 endmodule
