@@ -9,6 +9,7 @@ module riscv_cpu
    output wire [31:0] data_o
 );
    wire pc_readin_o;
+   wire pc_o;
 
    // Control unit
    control control_unit (
@@ -19,12 +20,14 @@ module riscv_cpu
       .addr_o (addr_o),
       .data_i (data_i),
       .data_o (data_o),
-      .pc_readin_o (pc_readin_o));
+      .pc_readin_o (pc_readin_o),
+      .pc_i (pc_o));
 
    // Fetch unit
    fetch fetch_unit (
       .clk (clk),
       .reset (reset),
       .data_i (data_i),
-      .pc_readin (pc_readin_o));
+      .pc_readin (pc_readin_o),
+      .pc_o (pc_o));
 endmodule
