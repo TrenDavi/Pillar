@@ -36,8 +36,8 @@ module top ();
    riscv_cpu cpu0 (
 	   .clk (clk),
 	   .reset (reset),
-	   .we_o (cpu_to_ram_we),
-      .addr_o (cpu_to_ram_addr),
+           .we_o (cpu_to_ram_we),
+           .addr_o (cpu_to_ram_addr),
 	   .data_i (ram_to_cpu_data),
 	   .data_o (cpu_to_ram_data));
 endmodule

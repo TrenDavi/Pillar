@@ -12,7 +12,7 @@ module ram
 
    always @(posedge clk) begin
       if (we) begin
-            ram[addr] <= data_i;
+         ram[addr] <= data_i;
       end
    end
 

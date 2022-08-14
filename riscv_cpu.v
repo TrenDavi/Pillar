@@ -12,8 +12,8 @@ module riscv_cpu
 
    // Control unit
    control control_unit (
-	   .clk (clk),
-	   .reset (reset),
+      .clk (clk),
+      .reset (reset),
       // RAM
       .we_o (we_o),
       .addr_o (addr_o),
@@ -23,8 +23,8 @@ module riscv_cpu
 
    // Fetch unit
    fetch fetch_unit (
-	   .clk (clk),
-	   .reset (reset),
+      .clk (clk),
+      .reset (reset),
       .data_i (data_i),
       .pc_readin (pc_readin_o));
 endmodule
