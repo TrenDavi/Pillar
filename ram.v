@@ -19,7 +19,6 @@ module ram
    assign data_o = ram[addr];
 
    initial begin
-      $readmemh("tests/prog.hex", ram, 1, 1626);
-      ram[0] = 6;
+      $readmemh("tests/prog.hex", ram, 0, 1626);
    end
 endmodule
