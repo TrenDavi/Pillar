@@ -8,11 +8,11 @@ module counter
    always @ (posedge clk) begin
       if (!reset)
          if (b != 5)
-	    b <= b + 1;
+	         b <= b + 1;
          else
             b <= 1;
       else 
-         b <= 1;
+         b <= 0;
    end
 
    assign out = b;

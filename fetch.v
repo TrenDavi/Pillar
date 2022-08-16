@@ -4,7 +4,7 @@ module fetch
    input wire reset,
    input wire [31:0] data_i,
    input wire pc_readin,
-   output wire pc_o
+   output wire [31:0] pc_o
 );
    reg [31:0] pc; // Program Counter
    

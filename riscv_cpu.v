@@ -9,7 +9,7 @@ module riscv_cpu
    output wire [31:0] data_o
 );
    wire pc_readin_o;
-   wire pc_o;
+   wire [31:0] pc_o;
 
    // Control unit
    control control_unit (

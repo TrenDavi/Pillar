@@ -9,7 +9,7 @@ module control
    output reg [31:0] data_o,
    // Fetch
    output reg pc_readin_o,
-   input wire pc_i
+   input wire [31:0] pc_i
 );
    reg [31:0] ir; // Instruction register
    reg ir_readin_o;
@@ -31,12 +31,13 @@ module control
    always @ (posedge clk) begin
       if (!reset) begin
          if(stage_o == 1) begin
-            ir_readin_o <= 1;
+            pc_readin_o <= 0;
             addr_o <= pc_i;
+            ir_readin_o <= 1;
          end
          else if(stage_o == 2) begin
-            ir_readin_o <= 0;
             addr_o <= 0;
+            ir_readin_o <= 0;
          end
          else if(stage_o == 3) begin
          end
@@ -49,13 +50,14 @@ module control
 
    always @ (reset) begin
       we_o <= 0;
-      addr_o <= 0; // Reset Vector is at 0x0
+      addr_o <= 0;
       data_o <= 0;
    end
 
    initial begin
-      pc_readin_o = 0;
+      pc_readin_o = 1;
       ir_readin_o = 0;
       ir = 0;
+      addr_o = 0;
    end
 endmodule
