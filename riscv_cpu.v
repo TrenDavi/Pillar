@@ -30,4 +30,9 @@ module riscv_cpu
       .data_i (data_i),
       .pc_readin (pc_readin_o),
       .pc_o (pc_o));
+   
+   // Decode unit
+   decode decode_unit (
+      .clk (clk),
+      .reset (reset));
 endmodule
