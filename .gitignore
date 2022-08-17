@@ -12,3 +12,6 @@
 
 # VCD tracking
 *.vcd
+
+# Todo files
+todo.txt
