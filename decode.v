@@ -1,11 +1,15 @@
 module decode
 (
    input wire clk,
-   input wire reset
+   input wire reset,
+   // Register select
+   input wire [4:0] rs1_i,
+   input wire [4:0] rs2_i,
+   // Register data output to acc
+   output reg [31:0] ra_o,
+   output reg [31:0] rb_o
 );
-// Decode logic
-
-// Register Fetch
+   // Register Fetch
    wire [31:0] r0;
    reg [31:0] r1;
    reg [31:0] r2;
@@ -75,7 +79,81 @@ module decode
          r30 <= 32'b0;
          r31 <= 32'b0;
       end
-      else begin
-      end
    end   
+   
+   always @ (*) begin
+      case (rs1_i)
+         'd0: ra_o = 32'b0;
+         'd1: ra_o = r1;
+         'd2: ra_o = r2;
+         'd3: ra_o = r3;
+         'd4: ra_o = r4;
+         'd5: ra_o = r5;
+         'd6: ra_o = r6;
+         'd7: ra_o = r7;
+         'd8: ra_o = r8;
+         'd9: ra_o = r9;
+         'd10: ra_o = r10;
+         'd11: ra_o = r11;
+         'd12: ra_o = r12;
+         'd13: ra_o = r13;
+         'd14: ra_o = r14;
+         'd15: ra_o = r15;
+         'd16: ra_o = r16;
+         'd17: ra_o = r17;
+         'd18: ra_o = r18;
+         'd19: ra_o = r19;
+         'd20: ra_o = r20;
+         'd21: ra_o = r21;
+         'd22: ra_o = r22;
+         'd23: ra_o = r23;
+         'd24: ra_o = r24;
+         'd25: ra_o = r25;
+         'd26: ra_o = r26;
+         'd27: ra_o = r27;
+         'd28: ra_o = r28;
+         'd29: ra_o = r29;
+         'd30: ra_o = r30;
+         'd31: ra_o = r31;
+         default : ra_o = 32'b0;
+      endcase
+   end
+
+   always @ (*) begin
+      case (rs2_i)
+         'd0: rb_o = 32'b0;
+         'd1: rb_o = r1;
+         'd2: rb_o = r2;
+         'd3: rb_o = r3;
+         'd4: rb_o = r4;
+         'd5: rb_o = r5;
+         'd6: rb_o = r6;
+         'd7: rb_o = r7;
+         'd8: rb_o = r8;
+         'd9: rb_o = r9;
+         'd10: rb_o = r10;
+         'd11: rb_o = r11;
+         'd12: rb_o = r12;
+         'd13: rb_o = r13;
+         'd14: rb_o = r14;
+         'd15: rb_o = r15;
+         'd16: rb_o = r16;
+         'd17: rb_o = r17;
+         'd18: rb_o = r18;
+         'd19: rb_o = r19;
+         'd20: rb_o = r20;
+         'd21: rb_o = r21;
+         'd22: rb_o = r22;
+         'd23: rb_o = r23;
+         'd24: rb_o = r24;
+         'd25: rb_o = r25;
+         'd26: rb_o = r26;
+         'd27: rb_o = r27;
+         'd28: rb_o = r28;
+         'd29: rb_o = r29;
+         'd30: rb_o = r30;
+         'd31: rb_o = r31;
+         default : rb_o = 32'b0;
+      endcase
+   end
 endmodule
