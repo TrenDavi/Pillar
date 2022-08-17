@@ -1,5 +1,5 @@
-## RISC-V
-RISC-V Architecture Emulator in C++/Verilog
+## Pillar
+RISC-V Architecture Emulator in Verilog that runs a custom kernel
 
 
 ### Memory Map
