@@ -4,7 +4,8 @@ SRC = control.v     \
       ram.v         \
       riscv_cpu.v   \
       clock.v       \
-      decode.v 
+      decode.v      \
+      alu.v
 
 TESTBENCH = top.v
 TBOUTPUT = waves.lxt

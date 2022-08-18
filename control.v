@@ -2,6 +2,7 @@ module control
 (
    input wire clk, 
    input wire reset,
+   output wire [2:0] stage_o,
    // RAM
    output reg we_o,
    output reg [31:0] addr_o,
@@ -9,12 +10,19 @@ module control
    output reg [31:0] data_o,
    // Fetch
    output reg pc_readin_o,
-   input wire [31:0] pc_i
+   input wire [31:0] pc_i,
+   // Decode
+   output wire [31:0] ir_o,
+   // ALU
+   output reg readin_a_o,
+   output reg readin_b_o
 );
-   reg [31:0] ir; // Instruction register
+   // Instruction register
+   reg [31:0] ir; 
+   assign ir_o = ir;
+
+   // Control
    reg ir_readin_o;
-   // Stage counter output
-   wire [2:0] stage_o;
 
    // Stage counter
    counter stage (
@@ -52,6 +60,8 @@ module control
       we_o <= 0;
       addr_o <= 0;
       data_o <= 0;
+      readin_a_o <= 0;
+      readin_b_o <= 0;
    end
 
    initial begin

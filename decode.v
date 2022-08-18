@@ -2,13 +2,15 @@ module decode
 (
    input wire clk,
    input wire reset,
-   // Register select
-   input wire [4:0] rs1_i,
-   input wire [4:0] rs2_i,
    // Register data output to acc
    output reg [31:0] ra_o,
-   output reg [31:0] rb_o
+   output reg [31:0] rb_o,
+   // Stage Select
+   input wire [31:0] ir_i
 );
+   wire [4:0] rs1;
+   wire [4:0] rs2;
+
    // Register Fetch
    wire [31:0] r0;
    reg [31:0] r1;
@@ -82,7 +84,7 @@ module decode
    end   
    
    always @ (*) begin
-      case (rs1_i)
+      case (rs1)
          'd0: ra_o = 32'b0;
          'd1: ra_o = r1;
          'd2: ra_o = r2;
@@ -120,7 +122,7 @@ module decode
    end
 
    always @ (*) begin
-      case (rs2_i)
+      case (rs2)
          'd0: rb_o = 32'b0;
          'd1: rb_o = r1;
          'd2: rb_o = r2;
