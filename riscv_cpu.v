@@ -35,9 +35,7 @@ module riscv_cpu
       .data_o (data_o),
       .pc_readin_o (pc_readin_o),
       .pc_i (pc_o),
-      .ir_o (ir_o),
-      .readin_a_o (readin_ra_o),
-      .readin_b_o (readin_rb_o));
+      .ir_o (ir_o));
 
    // Fetch unit
    fetch fetch_unit (
@@ -53,7 +51,9 @@ module riscv_cpu
       .reset (reset),
       .ra_o (ra_o),
       .rb_o (rb_o),
-      .ir_i (ir_o));
+      .ir_i (ir_o),
+      .readin_a_o (readin_ra_o),
+      .readin_b_o (readin_rb_o));
    
    // Arithmetic and logic unit
    alu alu_unit (

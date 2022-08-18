@@ -12,10 +12,7 @@ module control
    output reg pc_readin_o,
    input wire [31:0] pc_i,
    // Decode
-   output wire [31:0] ir_o,
-   // ALU
-   output reg readin_a_o,
-   output reg readin_b_o
+   output wire [31:0] ir_o
 );
    // Instruction register
    reg [31:0] ir; 
@@ -39,19 +36,24 @@ module control
    always @ (posedge clk) begin
       if (!reset) begin
          if(stage_o == 1) begin
+            // Fetch
             pc_readin_o <= 0;
             addr_o <= pc_i;
             ir_readin_o <= 1;
          end
          else if(stage_o == 2) begin
+            // Decode
             addr_o <= 0;
             ir_readin_o <= 0;
          end
          else if(stage_o == 3) begin
+            // Execute
          end
          else if(stage_o == 4) begin
+            // Memory access
          end
          else if(stage_o == 5) begin
+            // Write back
          end
       end
    end
@@ -60,8 +62,6 @@ module control
       we_o <= 0;
       addr_o <= 0;
       data_o <= 0;
-      readin_a_o <= 0;
-      readin_b_o <= 0;
    end
 
    initial begin

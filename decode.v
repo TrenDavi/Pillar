@@ -6,7 +6,10 @@ module decode
    output reg [31:0] ra_o,
    output reg [31:0] rb_o,
    // Stage Select
-   input wire [31:0] ir_i
+   input wire [31:0] ir_i,
+   // ALU register write in
+   output wire readin_a_o,
+   output wire readin_b_o
 );
    wire [4:0] rs1;
    wire [4:0] rs2;
