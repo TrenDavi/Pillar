@@ -5,14 +5,24 @@ module decode
    // Register data output to acc
    output reg [31:0] ra_o,
    output reg [31:0] rb_o,
+   output reg [31:0] pass_o,
    // Stage Select
+   input wire [2:0] stage_i,
+   // IR input
    input wire [31:0] ir_i,
    // ALU register write in
-   output wire readin_a_o,
-   output wire readin_b_o
+   output reg readin_a_o,
+   output reg readin_b_o,
+   output reg readin_pass_o
 );
    wire [4:0] rs1;
    wire [4:0] rs2;
+
+   always @ (*) begin
+      readin_a_o <= 0;
+      readin_b_o <= 0;
+      readin_pass_o <= 0;
+   end
 
    // Register Fetch
    wire [31:0] r0;
@@ -160,5 +170,11 @@ module decode
          'd31: rb_o = r31;
          default : rb_o = 32'b0;
       endcase
+   end
+
+   initial begin
+      readin_a_o = 0;
+      readin_b_o = 0;
+      readin_pass_o = 0;
    end
 endmodule

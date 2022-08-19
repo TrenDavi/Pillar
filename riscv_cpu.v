@@ -18,8 +18,10 @@ module riscv_cpu
    // Decode
    wire [31:0] ra_o;
    wire [31:0] rb_o;
+   wire [31:0] pass_o;
    wire readin_ra_o;
    wire readin_rb_o;
+   wire readin_pass_o;
    
    // Stage counter output
    wire [2:0] stage_o;
@@ -51,15 +53,20 @@ module riscv_cpu
       .reset (reset),
       .ra_o (ra_o),
       .rb_o (rb_o),
+      .pass_o (pass_o),
+      .stage_i (stage_o),
       .ir_i (ir_o),
       .readin_a_o (readin_ra_o),
-      .readin_b_o (readin_rb_o));
+      .readin_b_o (readin_rb_o),
+      .readin_pass_o (readin_pass_o));
    
    // Arithmetic and logic unit
    alu alu_unit (
       .readd_a_i (ra_o),
       .readd_b_i (rb_o),
+      .readd_pass_i (pass_o),
       .readin_a_i (readin_ra_o),
       .readin_b_i (readin_rb_o),
+      .readin_pass_i (readin_pass_o),
       .stage_i (stage_o));
 endmodule
