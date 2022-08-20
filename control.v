@@ -1,3 +1,5 @@
+`include "itype.v"
+
 module control
 (
    input wire clk, 
@@ -12,7 +14,12 @@ module control
    output reg pc_readin_o,
    input wire [31:0] pc_i,
    // Decode
-   output wire [31:0] ir_o
+   output wire [31:0] ir_o,
+   // ALU
+   output reg readin_a_o,
+   output reg readin_b_o,
+   output reg readin_pass_o,
+   input wire [4:0] itype_i
 );
    // Instruction register
    reg [31:0] ir; 
@@ -45,9 +52,30 @@ module control
             // Decode
             addr_o <= 0;
             ir_readin_o <= 0;
+
+            if (itype_i == `RTYPE) begin
+               readin_a_o <= 1;
+               readin_b_o <= 1;
+               readin_pass_o <= 0;
+            end
+            else if (itype_i == `ITYPE) begin
+            end
+            else if (itype_i == `STYPE) begin
+            end
+            else if (itype_i == `UTYPE) begin
+            end
+            else if (itype_i == `HOLD) begin
+               readin_a_o <= 0;
+               readin_b_o <= 0;
+               readin_pass_o <= 0;
+            end
+            
          end
          else if(stage_o == 3) begin
             // Execute
+            readin_a_o <= 0;
+            readin_b_o <= 0;
+            readin_pass_o <= 0;
          end
          else if(stage_o == 4) begin
             // Memory access
@@ -69,5 +97,8 @@ module control
       ir_readin_o = 0;
       ir = 0;
       addr_o = 0;
+      readin_a_o = 0;
+      readin_b_o = 0;
+      readin_pass_o = 0;
    end
 endmodule

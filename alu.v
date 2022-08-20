@@ -10,9 +10,9 @@ module alu
    input wire readin_pass_i,
    input wire [2:0] stage_i
 );
-   reg a;
-   reg b;
-   reg pass;
+   reg [31:0] a;
+   reg [31:0] b;
+   reg [31:0] pass;
 
    always @ (posedge clk) begin
       if (reset) begin

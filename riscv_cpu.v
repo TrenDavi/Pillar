@@ -23,6 +23,9 @@ module riscv_cpu
    wire readin_rb_o;
    wire readin_pass_o;
    
+   // ALU
+   wire [4:0] itype_o;
+   
    // Stage counter output
    wire [2:0] stage_o;
 
@@ -37,7 +40,12 @@ module riscv_cpu
       .data_o (data_o),
       .pc_readin_o (pc_readin_o),
       .pc_i (pc_o),
-      .ir_o (ir_o));
+      .ir_o (ir_o),
+      .readin_a_o (readin_ra_o),
+      .readin_b_o (readin_rb_o),
+      .readin_pass_o (readin_pass_o),
+      .itype_i (itype_o)
+   );
 
    // Fetch unit
    fetch fetch_unit (
@@ -56,12 +64,12 @@ module riscv_cpu
       .pass_o (pass_o),
       .stage_i (stage_o),
       .ir_i (ir_o),
-      .readin_a_o (readin_ra_o),
-      .readin_b_o (readin_rb_o),
-      .readin_pass_o (readin_pass_o));
+      .itype_o (itype_o));
    
    // Arithmetic and logic unit
    alu alu_unit (
+      .clk (clk),
+      .reset (reset),
       .readd_a_i (ra_o),
       .readd_b_i (rb_o),
       .readd_pass_i (pass_o),

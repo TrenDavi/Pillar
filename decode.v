@@ -13,15 +13,23 @@ module decode
    // IR input
    input wire [31:0] ir_i,
    // ALU register write in
-   output reg readin_a_o,
-   output reg readin_b_o,
-   output reg readin_pass_o
+   output reg [4:0] itype_o
 );
    wire [4:0] rs1;
    wire [4:0] rs2;
+   
+   // R
+   wire [6:0] r_func7 = ir_i[31:25];
+   wire [5:0] r_rs2 = ir_i[24:20];
+   wire [5:0] r_rs1 = ir_i[19:15];
+   wire [2:0] r_func3 = ir_i[14:12];
+   wire [5:0] r_rd = ir_i[11:7];
 
    always @ (*) begin
       if ((ir_i & `DECODE_R_TYPE) == `DECODE_R_TYPE) begin
+         ra_o <= rfile[r_rs1];
+         rb_o <= rfile[r_rs2];
+         itype_o <= 1; // Set R Type
       end
       else if ((ir_i & `DECODE_I_TYPE) == `DECODE_I_TYPE) begin
       end
@@ -30,11 +38,50 @@ module decode
       else if ((ir_i & `DECODE_U_TYPE) == `DECODE_U_TYPE) begin
       end
       else begin
-         readin_a_o <= 0;
-         readin_b_o <= 0;
-         readin_pass_o <= 0;
+         ra_o <= 0;
+         rb_o <= 0;
+         pass_o <= 0;
       end
    end
+
+   initial begin
+      itype_o <= 5'b0;
+   end
+
+   // Register File
+   wire [31:0] rfile [31:0];
+   assign rfile[0] = 32'b0;
+   assign rfile[1] = r1;
+   assign rfile[2] = r2;
+   assign rfile[3] = r3;
+   assign rfile[4] = r4;
+   assign rfile[5] = r5;
+   assign rfile[6] = r6;
+   assign rfile[7] = r7;
+   assign rfile[8] = r8;
+   assign rfile[9] = r9;
+   assign rfile[10] = r10;
+   assign rfile[11] = r11;
+   assign rfile[12] = r12;
+   assign rfile[13] = r13;
+   assign rfile[14] = r14;
+   assign rfile[15] = r15;
+   assign rfile[16] = r16;
+   assign rfile[17] = r17;
+   assign rfile[18] = r18;
+   assign rfile[19] = r19;
+   assign rfile[20] = r20;
+   assign rfile[21] = r21;
+   assign rfile[22] = r22;
+   assign rfile[23] = r23;
+   assign rfile[24] = r24;
+   assign rfile[25] = r25;
+   assign rfile[26] = r26;
+   assign rfile[27] = r27;
+   assign rfile[28] = r28;
+   assign rfile[29] = r29;
+   assign rfile[30] = r30;
+   assign rfile[31] = r31;
 
    // Register Fetch
    wire [31:0] r0;
@@ -182,11 +229,5 @@ module decode
          'd31: rb_o = r31;
          default : rb_o = 32'b0;
       endcase
-   end
-
-   initial begin
-      readin_a_o = 0;
-      readin_b_o = 0;
-      readin_pass_o = 0;
    end
 endmodule
