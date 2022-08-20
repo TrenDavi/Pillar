@@ -5,7 +5,8 @@ SRC = control.v     \
       riscv_cpu.v   \
       clock.v       \
       decode.v      \
-      alu.v
+      alu.v         \
+      opcode_masks.v
 
 TESTBENCH = top.v
 TBOUTPUT = waves.lxt

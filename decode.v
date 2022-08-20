@@ -1,3 +1,5 @@
+`include "opcode_masks.v"
+
 module decode
 (
    input wire clk,
@@ -19,9 +21,19 @@ module decode
    wire [4:0] rs2;
 
    always @ (*) begin
-      readin_a_o <= 0;
-      readin_b_o <= 0;
-      readin_pass_o <= 0;
+      if ((ir_i & `DECODE_R_TYPE) == `DECODE_R_TYPE) begin
+      end
+      else if ((ir_i & `DECODE_I_TYPE) == `DECODE_I_TYPE) begin
+      end
+      else if ((ir_i & `DECODE_S_TYPE) == `DECODE_S_TYPE) begin
+      end
+      else if ((ir_i & `DECODE_U_TYPE) == `DECODE_U_TYPE) begin
+      end
+      else begin
+         readin_a_o <= 0;
+         readin_b_o <= 0;
+         readin_pass_o <= 0;
+      end
    end
 
    // Register Fetch
