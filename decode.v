@@ -1,4 +1,5 @@
 `include "opcode_masks.v"
+`include "itype.v"
 
 module decode
 (
@@ -22,22 +23,22 @@ module decode
       if ((ir_i & `DECODE_R_TYPE) == `DECODE_R_TYPE) begin
          ra_o <= rfile[ir_i[19:15]];
          rb_o <= rfile[ir_i[24:20]];
-         itype_o <= 1; // Set R Type
+         itype_o <= `RTYPE; // Set R Type
       end
       else if ((ir_i & `DECODE_I_TYPE) == `DECODE_I_TYPE) begin
          ra_o <= rfile[ir_i[19:15]];
          rb_o <= ir_i[31:20];
-         itype_o <= 1; // Set I Type
+         itype_o <= `ITYPE; // Set I Type
       end
       else if ((ir_i & `DECODE_S_TYPE) == `DECODE_S_TYPE) begin
          ra_o <= rfile[ir_i[19:15]];
          rb_o <= rfile[ir_i[24:20]];
          pass_o <= {ir_i[31:25], ir_i[11:7]};
-         itype_o <= 1; // Set S Type
+         itype_o <= `STYPE; // Set S Type
       end
       else if ((ir_i & `DECODE_U_TYPE) == `DECODE_U_TYPE) begin
          pass_o <= ir_i[31:12];
-         itype_o <= 1; // Set U Type
+         itype_o <= `UTYPE; // Set U Type
       end
       else begin
          ra_o <= 0;
