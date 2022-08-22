@@ -76,5 +76,7 @@ module riscv_cpu
       .readin_a_i (readin_ra_o),
       .readin_b_i (readin_rb_o),
       .readin_pass_i (readin_pass_o),
-      .stage_i (stage_o));
+      .stage_i (stage_o),
+      .ir_i (ir_o),
+      .itype_i (itype_o));
 endmodule
