@@ -54,8 +54,8 @@ module decode
    // Register File
    wire [31:0] rfile [31:0];
    assign rfile[0] = 32'b0;
-   assign rfile[1] = r1;
-   assign rfile[2] = r2;
+   assign rfile[1] = 2;
+   assign rfile[2] = 4;
    assign rfile[3] = r3;
    assign rfile[4] = r4;
    assign rfile[5] = r5;

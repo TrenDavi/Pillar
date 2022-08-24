@@ -34,10 +34,8 @@ module control
            .reset (reset),
            .out (stage_o));
    
-   always @ (posedge clk) begin
-      if (ir_readin_o) begin
-         ir = data_i;
-      end
+   always @ (posedge ir_readin_o) begin
+      ir = data_i;
    end
 
    always @ (posedge clk) begin

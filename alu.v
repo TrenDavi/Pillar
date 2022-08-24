@@ -22,19 +22,33 @@ module alu
    reg [31:0] pass;
    
    // Read in values from decode
-   always @ (posedge clk) begin
+   always @ (posedge readin_a_i) begin
       if (reset) begin
          a <= 0;
-         b <= 0;
-         pass <= 0;
       end
       else begin
          if (readin_a_i) begin
             a <= readd_a_i;
          end
+      end
+   end
+
+   always @ (posedge readin_b_i) begin
+      if (reset) begin
+         b <= 0;
+      end
+      else begin
          if (readin_b_i) begin
             b <= readd_b_i;
          end
+      end
+   end
+
+   always @ (posedge readin_pass_i) begin
+      if (reset) begin
+         pass <= 0;
+      end
+      else begin
          if (readin_pass_i) begin
             pass <= readd_pass_i;
          end
