@@ -1,7 +1,6 @@
 # Pillar
 RISC-V Architecture Emulator in Verilog That Runs a Custom Kernel
 
-
 ## Prerequisites
 Pillar requires:
 
@@ -35,6 +34,10 @@ make simulate
 ````
 
 ## Debug in GTKWave
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/80648742/186539876-11ab6e84-f9ab-47ff-bb94-807eef5742e1.png"/>
+</p>
+
 ````
 gtkwave wave.vcd
 ````
