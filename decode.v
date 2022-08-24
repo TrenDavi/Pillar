@@ -1,4 +1,4 @@
-`include "opcode_masks.v"
+`include "opcode.v"
 `include "itype.v"
 
 module decode

@@ -6,3 +6,9 @@
 `define DECODE_S_TYPE 32'b0100011
 // Upper Immediate
 `define DECODE_U_TYPE 32'b0110111
+
+// Instruction operation decoding
+
+// ADD
+`define ADD7 7'b0000000
+`define ADD3 3'b000

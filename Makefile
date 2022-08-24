@@ -6,7 +6,7 @@ SRC = control.v     \
       clock.v       \
       decode.v      \
       alu.v         \
-      opcode_masks.v\
+      opcode.v      \
       itype.v
 
 TESTBENCH = top.v

@@ -1,4 +1,5 @@
 `include "itype.v"
+`include "opcode.v"
 
 module alu
 (
@@ -40,12 +41,20 @@ module alu
       end
    end
 
+   wire [6:0] r7 = ir_i[31:25];
+   wire [2:0] r3 = ir_i[14:12];
+
    // Compute
    always @ (posedge clk) begin
       if (!reset) begin
          // Execute at stage 3
          if (stage_i == 3) begin
             if (itype_i == `RTYPE) begin
+               if (r7 == `ADD7) begin
+                  if (r3 == `ADD3) begin
+                     y_o <= a + b;
+                  end
+               end
             end
             else if (itype_i == `ITYPE) begin
             end
