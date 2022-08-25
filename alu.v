@@ -64,10 +64,9 @@ module alu
          // Execute at stage 3
          if (stage_i == 3) begin
             if (itype_i == `RTYPE) begin
-               if (r7 == `ADD7) begin
-                  if (r3 == `ADD3) begin
+               // ADD
+               if (r7 == `ADD7 && r7 == `ADD3) begin
                      y_o <= a + b;
-                  end
                end
             end
             else if (itype_i == `ITYPE) begin
@@ -84,5 +83,7 @@ module alu
       a = 0;
       b = 0;
       pass = 0;
+      y_o = 0;
+      pass_o = 0;
    end
 endmodule
