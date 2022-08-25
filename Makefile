@@ -2,12 +2,13 @@ SRC = control.v     \
       counter.v     \
       fetch.v       \
       ram.v         \
-      riscv_cpu.v   \
+      cpu.v         \
       clock.v       \
       decode.v      \
       alu.v         \
       opcode.v      \
-      itype.v
+      itype.v       \
+      write.v       
 
 TESTBENCH = top.v
 TBOUTPUT = waves.lxt
