@@ -14,11 +14,11 @@ module decode
    // IR input
    input wire [31:0] ir_i,
    // ALU register write in
-   output reg [4:0] itype_o
+   output reg [4:0] itype_o,
+   // Register file write back
+   input wire [31:0] wd_i,
+   input wire wd_q_i
 );
-   wire [4:0] rs1;
-   wire [4:0] rs2;
-   
    always @ (*) begin
       if (ir_i[6:0] == `DECODE_R_TYPE) begin
          ra_o <= rfile[ir_i[19:15]];
@@ -45,6 +45,10 @@ module decode
          rb_o <= 0;
          pass_o <= 0;
       end
+   end
+   
+   always @ (posedge wd_q_i) begin
+      
    end
 
    initial begin
@@ -157,80 +161,4 @@ module decode
          r31 <= 32'b0;
       end
    end   
-   
-   always @ (*) begin
-      case (rs1)
-         'd0: ra_o = 32'b0;
-         'd1: ra_o = r1;
-         'd2: ra_o = r2;
-         'd3: ra_o = r3;
-         'd4: ra_o = r4;
-         'd5: ra_o = r5;
-         'd6: ra_o = r6;
-         'd7: ra_o = r7;
-         'd8: ra_o = r8;
-         'd9: ra_o = r9;
-         'd10: ra_o = r10;
-         'd11: ra_o = r11;
-         'd12: ra_o = r12;
-         'd13: ra_o = r13;
-         'd14: ra_o = r14;
-         'd15: ra_o = r15;
-         'd16: ra_o = r16;
-         'd17: ra_o = r17;
-         'd18: ra_o = r18;
-         'd19: ra_o = r19;
-         'd20: ra_o = r20;
-         'd21: ra_o = r21;
-         'd22: ra_o = r22;
-         'd23: ra_o = r23;
-         'd24: ra_o = r24;
-         'd25: ra_o = r25;
-         'd26: ra_o = r26;
-         'd27: ra_o = r27;
-         'd28: ra_o = r28;
-         'd29: ra_o = r29;
-         'd30: ra_o = r30;
-         'd31: ra_o = r31;
-         default : ra_o = 32'b0;
-      endcase
-   end
-
-   always @ (*) begin
-      case (rs2)
-         'd0: rb_o = 32'b0;
-         'd1: rb_o = r1;
-         'd2: rb_o = r2;
-         'd3: rb_o = r3;
-         'd4: rb_o = r4;
-         'd5: rb_o = r5;
-         'd6: rb_o = r6;
-         'd7: rb_o = r7;
-         'd8: rb_o = r8;
-         'd9: rb_o = r9;
-         'd10: rb_o = r10;
-         'd11: rb_o = r11;
-         'd12: rb_o = r12;
-         'd13: rb_o = r13;
-         'd14: rb_o = r14;
-         'd15: rb_o = r15;
-         'd16: rb_o = r16;
-         'd17: rb_o = r17;
-         'd18: rb_o = r18;
-         'd19: rb_o = r19;
-         'd20: rb_o = r20;
-         'd21: rb_o = r21;
-         'd22: rb_o = r22;
-         'd23: rb_o = r23;
-         'd24: rb_o = r24;
-         'd25: rb_o = r25;
-         'd26: rb_o = r26;
-         'd27: rb_o = r27;
-         'd28: rb_o = r28;
-         'd29: rb_o = r29;
-         'd30: rb_o = r30;
-         'd31: rb_o = r31;
-         default : rb_o = 32'b0;
-      endcase
-   end
 endmodule

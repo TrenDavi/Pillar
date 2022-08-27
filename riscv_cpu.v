@@ -28,6 +28,10 @@ module riscv_cpu
    
    // Stage counter output
    wire [2:0] stage_o;
+   
+   // Register file write back
+   wire [31:0] wd_o;
+   wire wd_q_o;
 
    // Control unit
    control control_unit (
@@ -44,8 +48,8 @@ module riscv_cpu
       .readin_a_o (readin_ra_o),
       .readin_b_o (readin_rb_o),
       .readin_pass_o (readin_pass_o),
-      .itype_i (itype_o)
-   );
+      .itype_i (itype_o),
+      .wb_q_o (wb_q_o));
 
    // Fetch unit
    fetch fetch_unit (
@@ -64,7 +68,9 @@ module riscv_cpu
       .pass_o (pass_o),
       .stage_i (stage_o),
       .ir_i (ir_o),
-      .itype_o (itype_o));
+      .itype_o (itype_o)
+      .wd (wd_o),
+      .wd_q (wd_q));
    
    // Arithmetic and logic unit
    alu alu_unit (
@@ -79,4 +85,9 @@ module riscv_cpu
       .stage_i (stage_o),
       .ir_i (ir_o),
       .itype_i (itype_o));
+
+   write write_unit(
+      .clk (clk),
+      .reset (reset)
+      .wd_o (wd_o));      
 endmodule

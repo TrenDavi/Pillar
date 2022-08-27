@@ -19,7 +19,9 @@ module control
    output reg readin_a_o,
    output reg readin_b_o,
    output reg readin_pass_o,
-   input wire [4:0] itype_i
+   input wire [4:0] itype_i,
+   // Write back
+   output reg wd_q_o
 );
    // Instruction register
    reg [31:0] ir; 
@@ -107,5 +109,6 @@ module control
       readin_a_o = 0;
       readin_b_o = 0;
       readin_pass_o = 0;
+      wd_q_o = 0;
    end
 endmodule
