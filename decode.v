@@ -46,9 +46,40 @@ module decode
          pass_o <= 0;
       end
    end
-   
+  
    always @ (posedge wd_q_i) begin
-   
+      case (ir_i[11:7])
+         'd1: r1 = wd_i;
+         'd2: r2 = wd_i;
+         'd3: r3 = wd_i;
+         'd4: r4 = wd_i;
+         'd5: r5 = wd_i;
+         'd6: r6 = wd_i;
+         'd7: r7 = wd_i;
+         'd8: r8 = wd_i;
+         'd10: r10 = wd_i;
+         'd11: r11 = wd_i;
+         'd12: r12 = wd_i;
+         'd13: r13 = wd_i;
+         'd14: r14 = wd_i;
+         'd15: r15 = wd_i;
+         'd16: r16 = wd_i;
+         'd17: r17 = wd_i;
+         'd18: r18 = wd_i;
+         'd19: r19 = wd_i;
+         'd20: r20 = wd_i;
+         'd21: r21 = wd_i;
+         'd22: r22 = wd_i;
+         'd23: r23 = wd_i;
+         'd24: r24 = wd_i;
+         'd25: r25 = wd_i;
+         'd26: r26 = wd_i;
+         'd27: r27 = wd_i;
+         'd28: r28 = wd_i;
+         'd29: r29 = wd_i;
+         'd30: r30 = wd_i;
+         'd31: r31 = wd_i;
+      endcase
    end
 
    initial begin
@@ -58,8 +89,8 @@ module decode
    // Register File
    wire [31:0] rfile [31:0];
    assign rfile[0] = 32'b0;
-   assign rfile[1] = 2;
-   assign rfile[2] = 4;
+   assign rfile[1] = r1;
+   assign rfile[2] = r2;
    assign rfile[3] = r3;
    assign rfile[4] = r4;
    assign rfile[5] = r5;
@@ -128,8 +159,8 @@ module decode
  
    always @ (posedge clk) begin
       if (reset) begin
-         r1  <= 32'b0;
-         r2  <= 32'b0;
+         r1  <= 3;
+         r2  <= 5;
          r3  <= 32'b0;
          r4  <= 32'b0;
          r5  <= 32'b0;

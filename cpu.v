@@ -25,6 +25,7 @@ module cpu
    
    // ALU
    wire [4:0] itype_o;
+   wire [31:0] y_o;
    
    // Stage counter output
    wire [2:0] stage_o;
@@ -32,6 +33,7 @@ module cpu
    // Register file write back
    wire [31:0] wd_o;
    wire wd_q_o;
+   wire wd_q_readin_o;
 
    // Control unit
    control control_unit (
@@ -49,7 +51,8 @@ module cpu
       .readin_b_o (readin_rb_o),
       .readin_pass_o (readin_pass_o),
       .itype_i (itype_o),
-      .wd_q_o (wd_q_o));
+      .wd_q_o (wd_q_o),
+      .wd_q_readin_o (wd_q_readin_o));
 
    // Fetch unit
    fetch fetch_unit (
@@ -84,10 +87,13 @@ module cpu
       .readin_pass_i (readin_pass_o),
       .stage_i (stage_o),
       .ir_i (ir_o),
-      .itype_i (itype_o));
+      .itype_i (itype_o),
+      .y_o (y_o));
 
    write write_unit(
       .clk (clk),
       .reset (reset),
+      .wd_q_readin_i (wd_q_readin_o),
+      .wd_i (y_o),
       .wd_o (wd_o));      
 endmodule

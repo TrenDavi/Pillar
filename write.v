@@ -2,10 +2,19 @@ module write
 (
    input wire clk,
    input wire reset,
-   output reg [31:0] wd_o
+   input wire wd_q_readin_i,
+   input wire [31:0] wd_i,
+   output wire [31:0] wd_o
 );
+   reg [31:0] data;
+   
+   always @ (posedge wd_q_readin_i) begin
+      data <= wd_i;
+   end
+
+   assign wd_o = data;
 
    initial begin
-      wd_o = 0;
+      data = 0;
    end
 endmodule

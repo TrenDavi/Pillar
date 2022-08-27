@@ -20,8 +20,10 @@ module control
    output reg readin_b_o,
    output reg readin_pass_o,
    input wire [4:0] itype_i,
+   // Memory access
    // Write back
-   output reg wd_q_o
+   output reg wd_q_o,
+   output reg wd_q_readin_o
 );
    // Instruction register
    reg [31:0] ir; 
@@ -43,6 +45,7 @@ module control
    always @ (posedge clk) begin
       if (!reset) begin
          if(stage_o == 1) begin
+            wd_q_o <= 0;
             // Fetch
             pc_readin_o <= 0;
             addr_o <= pc_i;
@@ -78,7 +81,6 @@ module control
                readin_b_o <= 0;
                readin_pass_o <= 0;
             end
-            
          end
          else if(stage_o == 3) begin
             // Execute
@@ -88,9 +90,18 @@ module control
          end
          else if(stage_o == 4) begin
             // Memory access
+            if (itype_i == `RTYPE || itype_i == `ITYPE
+               || itype_i == `UTYPE) begin
+               wd_q_readin_o <= 1;
+            end
          end
          else if(stage_o == 5) begin
+            wd_q_readin_o <= 0;
             // Write back
+            if (itype_i == `RTYPE || itype_i == `ITYPE
+               || itype_i == `UTYPE) begin
+               wd_q_o <= 1;
+            end
          end
       end
    end
@@ -107,6 +118,7 @@ module control
       readin_b_o = 0;
       readin_pass_o = 0;
       wd_q_o = 0;
+      wd_q_readin_o = 0;
    end
 
    initial begin
@@ -118,5 +130,6 @@ module control
       readin_b_o = 0;
       readin_pass_o = 0;
       wd_q_o = 0;
+      wd_q_readin_o = 0;
    end
 endmodule
