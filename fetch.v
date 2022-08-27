@@ -7,13 +7,13 @@ module fetch
    output wire [31:0] pc_o
 );
    reg [31:0] pc; // Program Counter
-   
-   always @ (posedge clk) begin
-      if (pc_readin) begin
-         // Reset Vector is placed at 0
-	      // during a reset
-	      pc <= data_i;
-      end
+
+   always @ (negedge reset) begin
+      // Reset Vector is loaded from 0x0 during a reset
+      pc <= data_i;
+   end   
+
+   always @ (posedge pc_readin) begin
    end
 
    assign pc_o = pc;
