@@ -102,6 +102,8 @@ module control
                || itype_i == `UTYPE) begin
                wd_q_o <= 1;
             end
+   
+            pc_readin_o <= 1;
          end
       end
    end

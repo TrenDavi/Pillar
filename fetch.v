@@ -4,6 +4,7 @@ module fetch
    input wire reset,
    input wire [31:0] data_i,
    input wire pc_readin,
+   input wire [31:0] pc_wd_i,
    output wire [31:0] pc_o
 );
    reg [31:0] pc; // Program Counter
@@ -14,6 +15,7 @@ module fetch
    end   
 
    always @ (posedge pc_readin) begin
+      pc <= pc_wd_i;
    end
 
    assign pc_o = pc;

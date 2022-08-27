@@ -34,6 +34,7 @@ module cpu
    wire [31:0] wd_o;
    wire wd_q_o;
    wire wd_q_readin_o;
+   wire [31:0] pc_wd_o;
 
    // Control unit
    control control_unit (
@@ -60,6 +61,7 @@ module cpu
       .reset (reset),
       .data_i (data_i),
       .pc_readin (pc_readin_o),
+      .pc_wd_i (pc_wd_o),
       .pc_o (pc_o));
    
    // Decode unit
@@ -95,5 +97,8 @@ module cpu
       .reset (reset),
       .wd_q_readin_i (wd_q_readin_o),
       .wd_i (y_o),
-      .wd_o (wd_o));      
+      .wd_o (wd_o),
+      .pc_i (pc_o),
+      .ir_i (ir_o),
+      .pc_wd_o (pc_wd_o));
 endmodule
