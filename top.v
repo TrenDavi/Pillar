@@ -33,7 +33,7 @@ module top ();
 	   .data_o (ram_to_cpu_data));
    
    // CPU
-   riscv_cpu cpu0 (
+   cpu cpu0 (
 	   .clk (clk),
 	   .reset (reset),
            .we_o (cpu_to_ram_we),

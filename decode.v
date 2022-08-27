@@ -48,7 +48,7 @@ module decode
    end
    
    always @ (posedge wd_q_i) begin
-      
+   
    end
 
    initial begin

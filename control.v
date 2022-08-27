@@ -99,6 +99,14 @@ module control
       we_o <= 0;
       addr_o <= 0;
       data_o <= 0;
+      pc_readin_o = 1;
+      ir_readin_o = 0;
+      ir = 0;
+      addr_o = 0;
+      readin_a_o = 0;
+      readin_b_o = 0;
+      readin_pass_o = 0;
+      wd_q_o = 0;
    end
 
    initial begin
