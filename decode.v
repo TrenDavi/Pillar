@@ -159,8 +159,8 @@ module decode
  
    always @ (posedge clk) begin
       if (reset) begin
-         r1  <= 3;
-         r2  <= 5;
+         r1  <= 32'b0;
+         r2  <= 32'b0;
          r3  <= 32'b0;
          r4  <= 32'b0;
          r5  <= 32'b0;
