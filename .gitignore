@@ -15,3 +15,6 @@
 
 # Todo files
 todo.txt
+
+# Rust
+tests/target/
