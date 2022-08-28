@@ -17,4 +17,4 @@
 todo.txt
 
 # Rust
-tests/target/
+target/
