@@ -65,8 +65,54 @@ module alu
          if (stage_i == 3) begin
             if (itype_i == `RTYPE) begin
                // ADD
-               if (r7 == `ADD7 && r7 == `ADD3) begin
+               if (r7 == `ADD7 && r3 == `ADD3) begin
                      y_o <= a + b;
+               end
+               // SUB
+               else if (r7 == `SUB7 && r3 == `SUB3) begin
+                     y_o <= a - b;
+               end
+               // SLL
+               else if (r7 == `SLL7 && r3 == `SLL3) begin
+                     y_o <= a << b;
+               end
+               // SLT
+               else if (r7 == `SLT7 && r3 == `SLT3) begin
+                     if (a < b) begin
+                        y_o <= 1;
+                     end
+                     else begin
+                        y_o <= 0;
+                     end
+               end
+               // SLTU
+               else if (r7 == `SLTU7 && r3 == `SLTU3) begin
+                     if (a < b) begin
+                        y_o <= 1;
+                     end
+                     else begin
+                        y_o <= 0;
+                     end
+               end
+               // XOR
+               else if (r7 == `XOR7 && r3 == `XOR3) begin
+                     y_o <= a ^ b;
+               end
+               // SRL
+               else if (r7 == `SRL7 && r3 == `SRL3) begin
+                     y_o <= a >> b;
+               end
+               // SRA
+               else if (r7 == `SRA7 && r3 == `SRA3) begin
+                     y_o <= a >>> b;
+               end
+               // OR
+               else if (r7 == `OR7 && r3 == `OR3) begin
+                     y_o <= a | b;
+               end
+               // AND
+               else if (r7 == `AND7 && r3 == `AND3) begin
+                     y_o <= a & b;
                end
             end
             else if (itype_i == `ITYPE) begin
