@@ -21,6 +21,9 @@ module write
       if (ir_i[6:0] == `DECODE_R_TYPE) begin
          pc_wd_o <= pc_i + 1;
       end
+      if (ir_i[6:0] == `DECODE_I_TYPE) begin
+         pc_wd_o <= pc_i + 1;
+      end
       else begin
          pc_wd_o <= 0;
       end

@@ -50,3 +50,19 @@
 // AND
 `define AND7 7'b0000000
 `define AND3 3'b111
+
+
+// I Type
+
+// LB
+// LH
+// LW
+// LBU
+// LHU
+// ADDI
+// SLTI
+// SLTIU
+// XORI
+// ORI
+// ANDI
+
