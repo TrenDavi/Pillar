@@ -1,7 +1,7 @@
 // Register functions
 `define DECODE_R_TYPE 32'b0110011
 // Immediate 
-`define DECODE_I_TYPE 32'b0010111
+`define DECODE_I_TYPE 32'b0000011
 // Store
 `define DECODE_S_TYPE 32'b0100011
 // Upper Immediate
