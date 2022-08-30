@@ -116,17 +116,6 @@ module alu
                end
             end
             else if (itype_i == `ITYPE) begin
-               // LB
-               // LH
-               // LW
-               // LBU
-               // LHU
-               // ADDI
-               // SLTI
-               // SLTIU
-               // XORI
-               // ORI
-               // ANDI
             end
             else if (itype_i == `RTYPE) begin
             end
