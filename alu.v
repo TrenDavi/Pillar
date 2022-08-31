@@ -116,6 +116,52 @@ module alu
                end
             end
             else if (itype_i == `ITYPE) begin
+               // ADDI
+               if (r3 == `ADDI3) begin
+                     y_o <= a + b;
+               end
+               // SLTI
+               else if (r3 == `SLTI3) begin
+                     if (a < b) begin
+                        y_o <= 1;
+                     end
+                     else begin
+                        y_o <= 0;
+                     end
+               end
+               // SLTIU
+               else if (r3 == `SLTIU3) begin
+                     if (a < b) begin
+                        y_o <= 1;
+                     end
+                     else begin
+                        y_o <= 0;
+                     end
+               end
+               // XORI
+               else if (r3 == `XORI3) begin
+                     y_o <= a ^ b;
+               end
+               // ORI
+               else if (r3 == `ORI3) begin
+                     y_o <= a | b;
+               end
+               // ANDI
+               else if (r3 == `ANDI3) begin
+                     y_o <= a & b;
+               end
+               // SLLI
+               else if (r7 == `SLLI7 && r3 == `SLLI3) begin
+                     y_o <= a << b;
+               end
+               // SRLI
+               else if (r7 == `SRLI7 && r3 == `SRLI3) begin
+                     y_o <= a >> b;
+               end
+               // SRAI
+               else if (r7 == `SRAI7 && r3 == `SRAI3) begin
+                     y_o <= a >>> b;
+               end
             end
             else if (itype_i == `RTYPE) begin
             end

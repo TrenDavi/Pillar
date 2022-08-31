@@ -55,11 +55,31 @@
 // I Type
 
 // ADDI
+`define ADDI3 3'b000
+
 // SLTI
+`define SLTI3 3'b010
+
 // SLTIU
+`define SLTIU3 3'b011
+
 // XORI
+`define XORI3 3'b100
+
 // ORI
+`define ORI3 3'b110
+
 // ANDI
+`define ANDI3 3'b111
+
 // SLLI
+`define SLLI7 7'b0000000
+`define SLLI3 3'b001
+
 // SRLI
+`define SRLI7 7'b0000000
+`define SRLI3 3'b101
+
 // SRAI
+`define SRAI7 7'b0100000
+`define SRAI3 3'b101
