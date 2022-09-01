@@ -19,16 +19,11 @@ module write
          ir_i[6:0] == `DECODE_I_TYPE) begin
          data <= wd_i;
       end
-      else if (ir_i[6:0] == `DECODE_S_TYPE) begin
-         data <= mem_i;
-      end
    end
 
    always @ (posedge clk) begin
-      if (ir_i[6:0] == `DECODE_R_TYPE) begin
-         pc_wd_o <= pc_i + 1;
-      end
-      if (ir_i[6:0] == `DECODE_I_TYPE) begin
+      if (ir_i[6:0] == `DECODE_R_TYPE || 
+      ir_i[6:0] == `DECODE_I_TYPE || ir_i[6:0] == `DECODE_S_TYPE) begin
          pc_wd_o <= pc_i + 1;
       end
       else begin

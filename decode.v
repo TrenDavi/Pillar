@@ -31,9 +31,9 @@ module decode
          itype_o <= `ITYPE; // Set I Type
       end
       else if (ir_i[6:0] == `DECODE_S_TYPE) begin
-         ra_o <= rfile[ir_i[19:15]];
-         rb_o <= rfile[ir_i[24:20]];
-         pass_o <= {ir_i[31:25], ir_i[11:7]};
+         ra_o <= {ir_i[31:25], ir_i[11:7]};
+         rb_o <= rfile[ir_i[19:15]];
+         pass_o <= rfile[ir_i[24:20]];
          itype_o <= `STYPE; // Set S Type
       end
       else if (ir_i[6:0] == `DECODE_U_TYPE) begin

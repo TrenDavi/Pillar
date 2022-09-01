@@ -94,16 +94,20 @@ module control
          end
          else if(stage_o == 4) begin
             // Memory access
+            if (itype_i == `RTYPE || itype_i == `ITYPE
+               || itype_i == `UTYPE || itype_i == `STYPE) begin
+               wd_q_readin_o <= 1;
+            end
             if (itype_i == `STYPE) begin
                mem_we_o <= 1;
             end
          end
          else if(stage_o == 5) begin
             mem_we_o <= 0;
+               wd_q_readin_o <= 0;
             // Write back
             if (itype_i == `RTYPE || itype_i == `ITYPE
-               || itype_i == `UTYPE || itype_i == `STYPE) begin
-               wd_q_readin_o <= 1;
+               || itype_i == `UTYPE) begin
                wd_q_o <= 1;
             end
    

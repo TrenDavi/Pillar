@@ -14,6 +14,6 @@ module memory
       ram[y_in] = pass_in;
    end
 
-   assign mem_o = y_in;
+   assign mem_o = ram[y_in];
 
 endmodule
