@@ -83,3 +83,14 @@
 // SRAI
 `define SRAI7 7'b0100000
 `define SRAI3 3'b101
+
+// S Type
+
+// SB
+`define SB3 3'000
+
+// SH
+`define SH3 3'001
+
+// SW
+`define SW3 3'010

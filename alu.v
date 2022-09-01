@@ -163,7 +163,9 @@ module alu
                      y_o <= a >>> b;
                end
             end
-            else if (itype_i == `RTYPE) begin
+            else if (itype_i == `STYPE) begin
+               y_o <= a + b;
+               pass_o <= pass;
             end
             else if (itype_i == `UTYPE) begin
             end

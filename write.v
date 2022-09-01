@@ -9,12 +9,19 @@ module write
    output wire [31:0] wd_o,
    input wire [31:0] pc_i,
    input wire [31:0] ir_i,
-   output reg [31:0] pc_wd_o
+   output reg [31:0] pc_wd_o,
+   input wire [31:0] mem_i
 );
    reg [31:0] data;
    
    always @ (posedge wd_q_readin_i) begin
-      data <= wd_i;
+      if (ir_i[6:0] == `DECODE_R_TYPE || 
+         ir_i[6:0] == `DECODE_I_TYPE) begin
+         data <= wd_i;
+      end
+      else if (ir_i[6:0] == `DECODE_S_TYPE) begin
+         data <= mem_i;
+      end
    end
 
    always @ (posedge clk) begin

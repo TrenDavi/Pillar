@@ -26,9 +26,14 @@ module cpu
    // ALU
    wire [4:0] itype_o;
    wire [31:0] y_o;
+   wire [31:0] passd_o;
    
    // Stage counter output
    wire [2:0] stage_o;
+
+   // Memory access output
+   wire mem_we_o;
+   wire [31:0] mem_o;
    
    // Register file write back
    wire [31:0] wd_o;
@@ -52,6 +57,7 @@ module cpu
       .readin_b_o (readin_rb_o),
       .readin_pass_o (readin_pass_o),
       .itype_i (itype_o),
+      .mem_we_o (mem_we_o),
       .wd_q_o (wd_q_o),
       .wd_q_readin_o (wd_q_readin_o));
 
@@ -90,8 +96,19 @@ module cpu
       .stage_i (stage_o),
       .ir_i (ir_o),
       .itype_i (itype_o),
-      .y_o (y_o));
-
+      .y_o (y_o),
+      .pass_o (passd_o));
+   
+   // Memory access unit
+   memory memory_unit (
+   .clk (clk),
+   .reset (reset),
+   .y_in (y_o),
+   .pass_in (passd_o),
+   .mem_o (mem_o),
+   .we_i (mem_we_o));
+   
+   // Write back unit
    write write_unit(
       .clk (clk),
       .reset (reset),
@@ -100,5 +117,6 @@ module cpu
       .wd_o (wd_o),
       .pc_i (pc_o),
       .ir_i (ir_o),
-      .pc_wd_o (pc_wd_o));
+      .pc_wd_o (pc_wd_o),
+      .mem_i (mem_o));
 endmodule

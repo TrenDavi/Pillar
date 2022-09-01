@@ -8,7 +8,7 @@ module ram
    output wire [31:0] data_o
 );
 
-   reg [31:0] ram [2**16:0] /*verilator public*/;
+   reg [31:0] ram [2**16:0];
 
    always @(posedge clk) begin
       if (we) begin

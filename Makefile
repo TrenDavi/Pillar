@@ -8,6 +8,7 @@ SRC = control.v     \
       alu.v         \
       opcode.v      \
       itype.v       \
+      memory.v      \
       write.v       
 
 TESTBENCH = top.v
