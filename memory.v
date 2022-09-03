@@ -12,7 +12,7 @@ module memory
    input wire [31:0] ir_i
 );
 
-   reg [31:0] ram [65000:0];
+   reg [31:0] ram [2**16:0];
 
    always @ (posedge we_i) begin
       ram[y_in] = pass_in;
@@ -34,6 +34,13 @@ module memory
          end
          else if (op == `LHU3) begin
          end
+      end
+   end
+
+   integer i;
+   initial begin
+      for (i = 0; i < 2**16; i = i + 1) begin
+         ram[i] = 0;
       end
    end
 endmodule
