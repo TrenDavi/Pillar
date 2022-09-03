@@ -12,7 +12,7 @@ module memory
    input wire [31:0] ir_i
 );
 
-   reg [31:0] ram [2**16:0];
+   reg [31:0] ram [2*2**24:2**24];
 
    always @ (posedge we_i) begin
       ram[y_in] = pass_in;

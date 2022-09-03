@@ -8,7 +8,7 @@ module ram
    output wire [31:0] data_o
 );
 
-   reg [31:0] ram [2**16:0];
+   reg [31:0] ram [2**24:0];
 
    always @(posedge clk) begin
       if (we) begin
@@ -19,6 +19,6 @@ module ram
    assign data_o = ram[addr];
 
    initial begin
-      $readmemh("tests/prog.hex", ram, 0, 1626);
+      $readmemh(`FILE, ram, 0, 1626);
    end
 endmodule

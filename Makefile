@@ -24,17 +24,14 @@ SOUTPUT =
 
 COUTPUT = compiler.out
 
-check : $(TESTBENCH) $(SRC)
-	$(COMPILER) $(SRC)
-
 simulate: $(COUTPUT)
-	$(SIMULATOR) $(SFLAGS) $(COUTPUT) $(SOUTPUT)
+	$(SIMULATOR) $(COUTPUT) 
 
 $(TBOUTPUT): $(COUTPUT)
 	$(SIMULATOR) $(SOPTIONS) $(COUTPUT) $(SOUTPUT)
 
 $(COUTPUT): $(TESTBENCH) $(SRC)
-	$(COMPILER) $(COFLAGS) $(COUTPUT) $(TESTBENCH) $(SRC)
+	$(COMPILER) $(COFLAGS) $(COUTPUT) $(TESTBENCH) $(SRC) -DFILE=\"tests\/test.hex\"
 
 clean:
 	rm -r -f *.vcd *.out
