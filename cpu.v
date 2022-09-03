@@ -106,7 +106,9 @@ module cpu
    .y_in (y_o),
    .pass_in (passd_o),
    .mem_o (mem_o),
-   .we_i (mem_we_o));
+   .we_i (mem_we_o),
+   .itype_i (itype_o),
+   .ir_i (ir_o));
    
    // Write back unit
    write write_unit(

@@ -2,6 +2,8 @@
 `define DECODE_R_TYPE 32'b0110011
 // Immediate 
 `define DECODE_I_TYPE 32'b0010011
+// Load
+`define DECODE_L_TYPE 32'b0000011
 // Store
 `define DECODE_S_TYPE 32'b0100011
 // Upper Immediate
@@ -87,10 +89,27 @@
 // S Type
 
 // SB
-`define SB3 3'000
+`define SB3 3'b000
 
 // SH
-`define SH3 3'001
+`define SH3 3'b001
 
 // SW
-`define SW3 3'010
+`define SW3 3'b010
+
+// L Type
+
+// LB
+`define LB3 3'b000
+
+// LH
+`define LH3 3'b001
+
+// LW
+`define LW3 3'b010
+
+// LBU
+`define LBU3 3'b100
+
+// LHU
+`define LHU3 3'b101
