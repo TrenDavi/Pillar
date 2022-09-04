@@ -12,10 +12,13 @@ module memory
    input wire [31:0] ir_i
 );
 
-   reg [31:0] ram [2*2**24:2**24];
+   reg [7:0] ram [2*2**24:2**24];
 
    always @ (posedge we_i) begin
-      ram[y_in] = pass_in;
+      ram[y_in] = pass_in[7:0];
+      ram[y_in+1] = pass_in[15:8];
+      ram[y_in+2] = pass_in[23:16];
+      ram[y_in+3] = pass_in[31:24];
    end
 
    wire [2:0] op;
@@ -28,7 +31,10 @@ module memory
          else if (op == `LH3) begin
          end
          else if (op == `LW3) begin
-            mem_o <= ram[y_in];
+            mem_o[7:0] <= ram[y_in];
+            mem_o[15:8] <= ram[y_in+2];
+            mem_o[23:16] <= ram[y_in+3];
+            mem_o[31:24] <= ram[y_in+4];
          end
          else if (op == `LBU3) begin
          end

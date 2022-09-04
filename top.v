@@ -1,9 +1,8 @@
 module top ();
    // RAM
-   wire [31:0] cpu_to_ram_addr;
-   wire        cpu_to_ram_we;
-   wire [31:0] ram_to_cpu_data;
-   wire [31:0] cpu_to_ram_data;
+   wire [31:0] cpu_to_rom_addr;
+   wire        cpu_to_rom_we;
+   wire [31:0] rom_to_cpu_data;
    
    // Clock
    wire clk;
@@ -24,20 +23,18 @@ module top ();
 	   .clk_o (clk));
    
    // RAM
-   ram ram0 (
+   rom rom0 (
 	   .clk (clk),
 	   .reset (reset),
-	   .we (cpu_to_ram_we),
-	   .addr (cpu_to_ram_addr),
-	   .data_i (cpu_to_ram_data),
-	   .data_o (ram_to_cpu_data));
+	   .we (cpu_to_rom_we),
+	   .addr (cpu_to_rom_addr),
+	   .data_o (rom_to_cpu_data));
    
    // CPU
    cpu cpu0 (
 	   .clk (clk),
 	   .reset (reset),
-           .we_o (cpu_to_ram_we),
-           .addr_o (cpu_to_ram_addr),
-	   .data_i (ram_to_cpu_data),
-	   .data_o (cpu_to_ram_data));
+      .we_o (cpu_to_rom_we),
+      .addr_o (cpu_to_rom_addr),
+	   .data_i (rom_to_cpu_data));
 endmodule

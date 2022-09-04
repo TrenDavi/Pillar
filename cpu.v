@@ -5,8 +5,7 @@ module cpu
    // RAM
    output wire we_o,
    output wire [31:0] addr_o,
-   input wire [31:0] data_i,
-   output wire [31:0] data_o
+   input wire [31:0] data_i
 );
    // PC
    wire pc_readin_o;
@@ -49,7 +48,6 @@ module cpu
       .we_o (we_o),
       .addr_o (addr_o),
       .data_i (data_i),
-      .data_o (data_o),
       .pc_readin_o (pc_readin_o),
       .pc_i (pc_o),
       .ir_o (ir_o),

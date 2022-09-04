@@ -9,7 +9,6 @@ module control
    output reg we_o,
    output reg [31:0] addr_o,
    input wire [31:0] data_i,
-   output reg [31:0] data_o,
    // Fetch
    output reg pc_readin_o,
    input wire [31:0] pc_i,
@@ -57,7 +56,6 @@ module control
          end
          else if(stage_o == 2) begin
             // Decode
-            addr_o <= 0;
             ir_readin_o <= 0;
 
             if (itype_i == `RTYPE) begin
@@ -125,7 +123,6 @@ module control
    always @ (reset) begin
       we_o <= 0;
       addr_o <= 0;
-      data_o <= 0;
       pc_readin_o = 1;
       ir_readin_o = 0;
       ir = 0;
