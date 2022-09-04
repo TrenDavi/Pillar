@@ -1,7 +1,7 @@
 SRC = control.v     \
       counter.v     \
       fetch.v       \
-      ram.v         \
+      rom.v         \
       cpu.v         \
       clock.v       \
       decode.v      \
