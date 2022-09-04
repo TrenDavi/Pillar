@@ -2,12 +2,16 @@
 `define DECODE_R_TYPE 32'b0110011
 // Immediate 
 `define DECODE_I_TYPE 32'b0010011
-// Load
+// Load Immediate
 `define DECODE_L_TYPE 32'b0000011
 // Store
 `define DECODE_S_TYPE 32'b0100011
+// Branch
+`define DECODE_B_TYPE 32'b1100011
 // Upper Immediate
 `define DECODE_U_TYPE 32'b0110111
+// Jump
+`define DECODE_J_TYPE 32'b1101111
 
 // Instruction operation decoding
 
