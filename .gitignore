@@ -4,6 +4,10 @@
 # Object files
 /obj_dir
 
+# Tests
+tests/*.o
+tests/*.hex
+
 # Vim
 *.swp
 
