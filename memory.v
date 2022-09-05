@@ -1,5 +1,7 @@
 `include "itype.v"
 
+`define RAMADDRSPACE 20
+
 module memory
 (
    input wire clk,
@@ -12,7 +14,7 @@ module memory
    input wire [31:0] ir_i
 );
 
-   reg [7:0] ram [2*2**24:2**24];
+   reg [7:0] ram [2*2**`RAMADDRSPACE:2**`RAMADDRSPACE];
 
    always @ (posedge we_i) begin
       ram[y_in] = pass_in[7:0];
@@ -45,7 +47,7 @@ module memory
 
    integer i;
    initial begin
-      for (i = 0; i < 2**16; i = i + 1) begin
+      for (i = 2**`RAMADDRSPACE; i < 2*2**`RAMADDRSPACE; i = i + 1) begin
          ram[i] = 0;
       end
    end
