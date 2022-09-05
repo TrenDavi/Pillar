@@ -95,7 +95,8 @@ module cpu
       .ir_i (ir_o),
       .itype_i (itype_o),
       .y_o (y_o),
-      .pass_o (passd_o));
+      .pass_o (passd_o),
+      .pc_i (pc_o));
    
    // Memory access unit
    memory memory_unit (

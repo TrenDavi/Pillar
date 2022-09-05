@@ -73,6 +73,11 @@ module control
                readin_b_o <= 1;
                readin_pass_o <= 1;
             end
+            else if (itype_i == `BTYPE) begin
+               readin_a_o <= 1;
+               readin_b_o <= 1;
+               readin_pass_o <= 1;
+            end
             else if (itype_i == `UTYPE) begin
                readin_a_o <= 0;
                readin_b_o <= 0;

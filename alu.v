@@ -15,7 +15,8 @@ module alu
    input wire [31:0] ir_i,
    input wire [4:0] itype_i,
    output reg [31:0] y_o,
-   output reg [31:0] pass_o
+   output reg [31:0] pass_o,
+   input wire [31:0] pc_i
 );
    reg [31:0] a;
    reg [31:0] b;
@@ -166,6 +167,44 @@ module alu
             else if (itype_i == `STYPE) begin
                y_o <= a + b;
                pass_o <= pass;
+            end
+            else if (itype_i == `BTYPE) begin
+               // BEQ
+               if (r3 == `BEQ3) begin
+                  if (a == b) begin
+                     y_o <= pc_i + pass;
+                  end
+               end
+               // BNE
+               if (r3 == `BNE3) begin
+                  if (a != b) begin
+                     y_o <= pc_i + pass;
+                  end
+               end
+               // BLT
+               if (r3 == `BLT3) begin
+                  if (a < b) begin
+                     y_o <= pc_i + pass;
+                  end
+               end
+               // BGE
+               if (r3 == `BGE3) begin
+                  if (a >= b) begin
+                     y_o <= pc_i + pass;
+                  end
+               end
+               // BLTU
+               if (r3 == `BLTU3) begin
+                  if (a < b) begin
+                     y_o <= pc_i + pass;
+                  end
+               end
+               // BGEU
+               if (r3 == `BGEU3) begin
+                  if (a > b) begin
+                     y_o <= pc_i + pass;
+                  end
+               end
             end
             else if (itype_i == `UTYPE) begin
             end

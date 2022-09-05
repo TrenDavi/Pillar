@@ -30,8 +30,8 @@ module write
       ir_i[6:0] == `DECODE_L_TYPE) begin
          pc_wd_o <= pc_i + 4;
       end
-      else begin
-         pc_wd_o <= 0;
+      else if (ir_i[6:0] == `DECODE_B_TYPE) begin
+         pc_wd_o <= wd_i + 4;
       end
    end
 

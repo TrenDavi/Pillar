@@ -36,6 +36,12 @@ module decode
          pass_o <= rfile[ir_i[24:20]];
          itype_o <= `STYPE; // Set S Type
       end
+      else if (ir_i[6:0] == `DECODE_B_TYPE) begin
+         ra_o <= rfile[ir_i[19:15]];
+         rb_o <= rfile[ir_i[24:20]];
+         pass_o <= {ir_i[30:25], ir_i[11:6]};
+         itype_o <= `BTYPE; // Set B Type
+      end
       else if (ir_i[6:0] == `DECODE_L_TYPE) begin
          ra_o <= ir_i[31:20];
          rb_o <= rfile[ir_i[19:15]];

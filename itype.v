@@ -5,3 +5,4 @@
 `define STYPE 3
 `define UTYPE 4
 `define LTYPE 5
+`define BTYPE 6
