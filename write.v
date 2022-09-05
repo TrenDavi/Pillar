@@ -16,7 +16,8 @@ module write
    
    always @ (posedge wd_q_readin_i) begin
       if (ir_i[6:0] == `DECODE_R_TYPE || 
-         ir_i[6:0] == `DECODE_I_TYPE) begin
+         ir_i[6:0] == `DECODE_I_TYPE ||
+         ir_i[6:0] == `DECODE_U_TYPE) begin
          data <= wd_i;
       end
       else if (ir_i[6:0] == `DECODE_L_TYPE) begin
@@ -27,7 +28,7 @@ module write
    always @ (posedge clk) begin
       if (ir_i[6:0] == `DECODE_R_TYPE || 
       ir_i[6:0] == `DECODE_I_TYPE || ir_i[6:0] == `DECODE_S_TYPE ||
-      ir_i[6:0] == `DECODE_L_TYPE) begin
+      ir_i[6:0] == `DECODE_L_TYPE || ir_i[6:0] == `DECODE_U_TYPE) begin
          pc_wd_o <= pc_i + 4;
       end
       else if (ir_i[6:0] == `DECODE_B_TYPE) begin

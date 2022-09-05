@@ -207,6 +207,7 @@ module alu
                end
             end
             else if (itype_i == `UTYPE) begin
+               y_o <= a;
             end
             else if (itype_i == `LTYPE) begin
                y_o <= a + b;

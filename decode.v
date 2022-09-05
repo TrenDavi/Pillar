@@ -48,7 +48,7 @@ module decode
          itype_o <= `LTYPE; // Set L Type
       end
       else if (ir_i[6:0] == `DECODE_U_TYPE) begin
-         pass_o <= ir_i[31:12];
+         ra_o <= ir_i[31:12];
          itype_o <= `UTYPE; // Set U Type
       end
       else begin

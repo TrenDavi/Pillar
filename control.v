@@ -79,9 +79,9 @@ module control
                readin_pass_o <= 1;
             end
             else if (itype_i == `UTYPE) begin
-               readin_a_o <= 0;
+               readin_a_o <= 1;
                readin_b_o <= 0;
-               readin_pass_o <= 1;
+               readin_pass_o <= 0;
             end
             else if (itype_i == `LTYPE) begin
                readin_a_o <= 1;
@@ -103,7 +103,7 @@ module control
          else if(stage_o == 4) begin
             // Memory access
             if (itype_i == `RTYPE || itype_i == `ITYPE
-               || itype_i == `UTYPE || itype_i == `STYPE
+               || itype_i == `STYPE || itype_i == `UTYPE
                || itype_i == `LTYPE) begin
                wd_q_readin_o <= 1;
             end
