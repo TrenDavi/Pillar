@@ -11,6 +11,6 @@ module rom
    assign data_o = {rom[addr+3], rom[addr+2], rom[addr+1], rom[addr]};
 
    initial begin
-      $readmemh(`FILE, rom, 0, 211);
+      $readmemh(`FILE, rom, 0, 2**24);
    end
 endmodule
