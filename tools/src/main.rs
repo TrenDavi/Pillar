@@ -59,7 +59,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         let file_path = file.as_ref().unwrap();
         let bin_data = fs::read(file_path)?;
         let obj_file = object::File::parse(&*bin_data)?;
-        let section: u32 = obj_file.entry().try_into().unwrap();
+        let mut section: u32 = obj_file.entry().try_into().unwrap();
+        section += 4;
 
         let b4: u8 = ((section >> 24) & 0xff) as u8;
         let b3: u8 = ((section >> 16) & 0xff) as u8;
