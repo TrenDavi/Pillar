@@ -116,7 +116,8 @@ module control
             wd_q_readin_o <= 0;
             // Write back
             if (itype_i == `RTYPE || itype_i == `ITYPE
-               || itype_i == `UTYPE || itype_i == `LTYPE) begin
+               || itype_i == `UTYPE || itype_i == `LTYPE
+               || itype_i == `UPCTYPE) begin
                wd_q_o <= 1;
             end
    

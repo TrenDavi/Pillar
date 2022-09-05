@@ -20,6 +20,9 @@ module write
          ir_i[6:0] == `DECODE_U_TYPE) begin
          data <= wd_i;
       end
+      else if (ir_i[6:0] == `DECODE_UPC_TYPE) begin
+         data <= pc_i + ir_i[31:12];
+      end
       else if (ir_i[6:0] == `DECODE_L_TYPE) begin
          data <= mem_i;
       end
@@ -30,6 +33,9 @@ module write
       ir_i[6:0] == `DECODE_I_TYPE || ir_i[6:0] == `DECODE_S_TYPE ||
       ir_i[6:0] == `DECODE_L_TYPE || ir_i[6:0] == `DECODE_U_TYPE) begin
          pc_wd_o <= pc_i + 4;
+      end
+      else if (ir_i[6:0] == `DECODE_UPC_TYPE) begin
+         pc_wd_o <= pc_i + ir_i[31:12];
       end
       else if (ir_i[6:0] == `DECODE_B_TYPE) begin
          pc_wd_o <= wd_i + 4;

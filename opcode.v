@@ -10,6 +10,8 @@
 `define DECODE_B_TYPE 32'b1100011
 // Upper Immediate
 `define DECODE_U_TYPE 32'b0110111
+// Upper Immediate to PC
+`define DECODE_UPC_TYPE 32'b0010111
 // Jump
 `define DECODE_J_TYPE 32'b1101111
 
