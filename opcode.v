@@ -124,13 +124,26 @@
 
 // BEQ
 `define BEQ3 3'b000
+
 // BNE
 `define BNE3 3'b001
+
 // BLT
 `define BLT3 3'b100
+
 // BGE
 `define BGE3 3'b101
+
 // BLTU
 `define BLTU3 3'b110
+
 // BGEU
 `define BGEU3 3'b111
+
+// J type
+
+// JAL
+`define JAL_OP 7'b1101111
+
+// JALR
+`define JALR_OP 7'b1100111

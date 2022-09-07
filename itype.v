@@ -7,3 +7,4 @@
 `define LTYPE 5
 `define BTYPE 6
 `define UPCTYPE 7
+`define JTYPE 8

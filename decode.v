@@ -51,6 +51,9 @@ module decode
          ra_o <= ir_i[31:12];
          itype_o <= `UTYPE; // Set U Type
       end
+      else if (ir_i[6:0] == `JAL_OP) begin
+         itype_o <= `JTYPE; // Set J Type
+      end
       else begin
          ra_o <= 0;
          rb_o <= 0;

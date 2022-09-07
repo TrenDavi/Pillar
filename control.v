@@ -88,7 +88,7 @@ module control
                readin_b_o <= 1;
                readin_pass_o <= 0;
             end
-            else if (itype_i == `HOLD) begin
+            else begin
                readin_a_o <= 0;
                readin_b_o <= 0;
                readin_pass_o <= 0;
@@ -117,7 +117,7 @@ module control
             // Write back
             if (itype_i == `RTYPE || itype_i == `ITYPE
                || itype_i == `UTYPE || itype_i == `LTYPE
-               || itype_i == `UPCTYPE) begin
+               || itype_i == `UPCTYPE || itype_i == `JTYPE) begin
                wd_q_o <= 1;
             end
    
