@@ -54,6 +54,10 @@ module decode
       else if (ir_i[6:0] == `JAL_OP) begin
          itype_o <= `JTYPE; // Set J Type
       end
+      else if (ir_i[6:0] == `JALR_OP) begin
+         ra_o <= rfile[ir_i[19:15]];
+         itype_o <= `JRTYPE; // Set JR Type
+      end
       else begin
          ra_o <= 0;
          rb_o <= 0;

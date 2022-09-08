@@ -212,6 +212,9 @@ module alu
             else if (itype_i == `LTYPE) begin
                y_o <= a + b;
             end
+            else if (itype_i == `JRTYPE) begin
+               y_o <= a;
+            end
          end
       end
    end

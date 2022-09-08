@@ -24,7 +24,7 @@ module write
       else if (ir_i[6:0] == `DECODE_UPC_TYPE) begin
          data <= pc_i + ir_i[31:12];
       end
-      else if (ir_i[6:0] == `JAL_OP) begin
+      else if (ir_i[6:0] == `JAL_OP || ir_i[6:0] == `JALR_OP) begin
          data <= pc_i + 4;
       end
       else if (ir_i[6:0] == `DECODE_L_TYPE) begin
@@ -47,9 +47,13 @@ module write
    end
 
    wire [19:0] jal = {ir_i[19:12], ir_i[20], ir_i[30:21], 1'b0} + pc_i; 
-   always @ (*) begin
+   always @ (stage_i) begin
       if (stage_i == 5 && ir_i[6:0] == `JAL_OP) begin
          pc_wd_o <= jal;
+      end
+      else if (stage_i == 5 && ir_i[6:0] == `JALR_OP) begin
+         $display("%b", wd_i);
+         pc_wd_o <= wd_i + ir_i[30:20];
       end
    end
 

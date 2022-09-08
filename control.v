@@ -88,6 +88,16 @@ module control
                readin_b_o <= 1;
                readin_pass_o <= 0;
             end
+            else if (itype_i == `JTYPE) begin
+               readin_a_o <= 0;
+               readin_b_o <= 0;
+               readin_pass_o <= 0;
+            end
+            else if (itype_i == `JRTYPE) begin
+               readin_a_o <= 1;
+               readin_b_o <= 0;
+               readin_pass_o <= 0;
+            end
             else begin
                readin_a_o <= 0;
                readin_b_o <= 0;
@@ -104,7 +114,7 @@ module control
             // Memory access
             if (itype_i == `RTYPE || itype_i == `ITYPE
                || itype_i == `STYPE || itype_i == `UTYPE
-               || itype_i == `LTYPE) begin
+               || itype_i == `LTYPE || itype_i == `JTYPE ||  itype_i == `JRTYPE) begin
                wd_q_readin_o <= 1;
             end
             if (itype_i == `STYPE) begin
@@ -117,7 +127,8 @@ module control
             // Write back
             if (itype_i == `RTYPE || itype_i == `ITYPE
                || itype_i == `UTYPE || itype_i == `LTYPE
-               || itype_i == `UPCTYPE || itype_i == `JTYPE) begin
+               || itype_i == `UPCTYPE || itype_i == `JTYPE
+               || itype_i == `JRTYPE) begin
                wd_q_o <= 1;
             end
    

@@ -8,3 +8,4 @@
 `define BTYPE 6
 `define UPCTYPE 7
 `define JTYPE 8
+`define JRTYPE 9
