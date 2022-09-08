@@ -10,7 +10,8 @@ module write
    input wire [31:0] pc_i,
    input wire [31:0] ir_i,
    output reg [31:0] pc_wd_o,
-   input wire [31:0] mem_i
+   input wire [31:0] mem_i,
+   input wire [2:0] stage_i
 );
    reg [31:0] data;
    
@@ -40,11 +41,15 @@ module write
       else if (ir_i[6:0] == `DECODE_UPC_TYPE) begin
          pc_wd_o <= pc_i + 4;
       end
-      else if (ir_i[6:0] == `JAL_OP) begin
-         pc_wd_o <= pc_i + ir_i[31:12];
-      end
       else if (ir_i[6:0] == `DECODE_B_TYPE) begin
          pc_wd_o <= wd_i + 4;
+      end
+   end
+
+   wire [19:0] jal = {ir_i[19:12], ir_i[20], ir_i[30:21], 1'b0} + pc_i; 
+   always @ (*) begin
+      if (stage_i == 5 && ir_i[6:0] == `JAL_OP) begin
+         pc_wd_o <= jal;
       end
    end
 

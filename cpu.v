@@ -119,5 +119,6 @@ module cpu
       .pc_i (pc_o),
       .ir_i (ir_o),
       .pc_wd_o (pc_wd_o),
-      .mem_i (mem_o));
+      .mem_i (mem_o),
+      .stage_i (stage_o));
 endmodule
