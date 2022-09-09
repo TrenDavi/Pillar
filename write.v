@@ -52,7 +52,6 @@ module write
          pc_wd_o <= jal;
       end
       else if (stage_i == 5 && ir_i[6:0] == `JALR_OP) begin
-         $display("%b", wd_i);
          pc_wd_o <= wd_i + ir_i[30:20];
       end
    end

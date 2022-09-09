@@ -1,12 +1,12 @@
 module cpu
 (
    input wire clk,
-   input wire reset,
-   // RAM
-   output wire we_o,
-   output wire [31:0] addr_o,
-   input wire [31:0] data_i
+   input wire reset
 );
+   // RAM
+   wire [31:0] addr_o;
+   wire [31:0] data_o;
+
    // PC
    wire pc_readin_o;
    wire [31:0] pc_o;
@@ -47,7 +47,7 @@ module cpu
       .stage_o (stage_o),
       .we_o (we_o),
       .addr_o (addr_o),
-      .data_i (data_i),
+      .data_i (data_o),
       .pc_readin_o (pc_readin_o),
       .pc_i (pc_o),
       .ir_o (ir_o),
@@ -63,7 +63,7 @@ module cpu
    fetch fetch_unit (
       .clk (clk),
       .reset (reset),
-      .data_i (data_i),
+      .data_i (data_o),
       .pc_readin (pc_readin_o),
       .pc_wd_i (pc_wd_o),
       .pc_o (pc_o));
@@ -107,7 +107,9 @@ module cpu
    .mem_o (mem_o),
    .we_i (mem_we_o),
    .itype_i (itype_o),
-   .ir_i (ir_o));
+   .ir_i (ir_o),
+   .addr_i (addr_o),
+   .data_o (data_o));
    
    // Write back unit
    write write_unit(

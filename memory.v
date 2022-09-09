@@ -11,10 +11,14 @@ module memory
    output reg [31:0] mem_o,
    input wire we_i,
    input wire [4:0] itype_i,
-   input wire [31:0] ir_i
+   input wire [31:0] ir_i,
+   input wire [31:0] addr_i,
+   output wire [31:0] data_o
 );
 
-   reg [7:0] ram [2*2**`RAMADDRSPACE:2**`RAMADDRSPACE];
+   assign data_o = {ram[addr_i+3], ram[addr_i+2], ram[addr_i+1], ram[addr_i]};
+
+   reg [7:0] ram [2**`RAMADDRSPACE:0];
 
    always @ (posedge we_i) begin
       ram[y_in] = pass_in[7:0];
@@ -50,5 +54,6 @@ module memory
       for (i = 2**`RAMADDRSPACE; i < 2*2**`RAMADDRSPACE; i = i + 1) begin
          ram[i] = 0;
       end
+      $readmemh(`FILE, ram, 0, 2**`RAMADDRSPACE);
    end
 endmodule
