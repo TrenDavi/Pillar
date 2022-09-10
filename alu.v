@@ -174,36 +174,48 @@ module alu
                   if (a == b) begin
                      y_o <= pc_i + pass;
                   end
+                  else
+                     y_o <= pc_i + 4;
                end
                // BNE
                if (r3 == `BNE3) begin
                   if (a != b) begin
                      y_o <= pc_i + pass;
                   end
+                  else
+                     y_o <= pc_i + 4;
                end
                // BLT
                if (r3 == `BLT3) begin
                   if (a < b) begin
                      y_o <= pc_i + pass;
                   end
+                  else
+                     y_o <= pc_i + 4;
                end
                // BGE
                if (r3 == `BGE3) begin
                   if (a >= b) begin
                      y_o <= pc_i + pass;
                   end
+                  else
+                     y_o <= pc_i + 4;
                end
                // BLTU
                if (r3 == `BLTU3) begin
                   if (a < b) begin
                      y_o <= pc_i + pass;
                   end
+                  else
+                     y_o <= pc_i + 4;
                end
                // BGEU
                if (r3 == `BGEU3) begin
                   if (a > b) begin
                      y_o <= pc_i + pass;
                   end
+                  else
+                     y_o <= pc_i + 4;
                end
             end
             else if (itype_i == `UTYPE) begin

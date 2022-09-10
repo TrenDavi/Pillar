@@ -13,7 +13,8 @@ module memory
    input wire [4:0] itype_i,
    input wire [31:0] ir_i,
    input wire [31:0] addr_i,
-   output wire [31:0] data_o
+   output wire [31:0] data_o,
+   input wire [2:0] stage_i
 );
 
    assign data_o = {ram[addr_i+3], ram[addr_i+2], ram[addr_i+1], ram[addr_i]};
@@ -30,8 +31,8 @@ module memory
    wire [2:0] op;
    assign op = ir_i[14:12];
 
-   always @ (itype_i) begin
-      if (itype_i == `LTYPE) begin
+   always @ (stage_i) begin
+      if (itype_i == `LTYPE && stage_i == 4) begin
          if (op == `LB3) begin
          end
          else if (op == `LH3) begin

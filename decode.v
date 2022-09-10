@@ -40,7 +40,7 @@ module decode
       else if (ir_i[6:0] == `DECODE_B_TYPE) begin
          ra_o <= rfile[ir_i[19:15]];
          rb_o <= rfile[ir_i[24:20]];
-         pass_o <= {ir_i[7], ir_i[30:25], ir_i[11:8]};
+         pass_o <= {ir_i[31], ir_i[7], ir_i[30:25], ir_i[11:8], 1'b0};
          itype_o <= `BTYPE; // Set B Type
       end
       else if (ir_i[6:0] == `DECODE_L_TYPE) begin
@@ -177,39 +177,37 @@ module decode
    
    assign r0 = 32'b0;   
  
-   always @ (posedge clk) begin
-      if (reset) begin
-         r1  <= 32'b0;
-         r2  <= 32'b0;
-         r3  <= 32'b0;
-         r4  <= 32'b0;
-         r5  <= 32'b0;
-         r6  <= 32'b0;
-         r7  <= 32'b0;
-         r8  <= 32'b0;
-         r9  <= 32'b0;
-         r10 <= 32'b0;
-         r11 <= 32'b0;
-         r12 <= 32'b0;
-         r13 <= 32'b0;
-         r14 <= 32'b0;
-         r15 <= 32'b0;
-         r16 <= 32'b0;
-         r17 <= 32'b0;
-         r18 <= 32'b0;
-         r19 <= 32'b0;
-         r20 <= 32'b0;
-         r21 <= 32'b0;
-         r22 <= 32'b0;
-         r23 <= 32'b0;
-         r24 <= 32'b0;
-         r25 <= 32'b0;
-         r26 <= 32'b0;
-         r27 <= 32'b0;
-         r28 <= 32'b0;
-         r29 <= 32'b0;
-         r30 <= 32'b0;
-         r31 <= 32'b0;
-      end
+   always @ (negedge reset) begin
+      r1  <= 32'b0;
+      r2  <= 'h12000;
+      r3  <= 32'b0;
+      r4  <= 32'b0;
+      r5  <= 32'b0;
+      r6  <= 32'b0;
+      r7  <= 32'b0;
+      r8  <= 32'b0;
+      r9  <= 32'b0;
+      r10 <= 32'b0;
+      r11 <= 32'b0;
+      r12 <= 32'b0;
+      r13 <= 32'b0;
+      r14 <= 32'b0;
+      r15 <= 32'b0;
+      r16 <= 32'b0;
+      r17 <= 32'b0;
+      r18 <= 32'b0;
+      r19 <= 32'b0;
+      r20 <= 32'b0;
+      r21 <= 32'b0;
+      r22 <= 32'b0;
+      r23 <= 32'b0;
+      r24 <= 32'b0;
+      r25 <= 32'b0;
+      r26 <= 32'b0;
+      r27 <= 32'b0;
+      r28 <= 32'b0;
+      r29 <= 32'b0;
+      r30 <= 32'b0;
+      r31 <= 32'b0;
    end   
 endmodule

@@ -109,7 +109,8 @@ module cpu
    .itype_i (itype_o),
    .ir_i (ir_o),
    .addr_i (addr_o),
-   .data_o (data_o));
+   .data_o (data_o),
+   .stage_i (stage_o));
    
    // Write back unit
    write write_unit(
