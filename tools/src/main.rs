@@ -14,11 +14,8 @@ use subprocess::PopenConfig;
 use subprocess::Redirection;
 
 #[test]
-fn test_fn() {
+fn test_fn() -> Result<(), Box<dyn Error>> {
     // Test processor functionality
-}
-
-fn main() -> Result<(), Box<dyn Error>> {
     let options = MatchOptions {
         case_sensitive: false,
         ..Default::default()
@@ -113,3 +110,5 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     Ok(())
 }
+
+fn main(){}
