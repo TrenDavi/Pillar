@@ -34,7 +34,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 "-o",
                 "../tests/test.o",
                 "-nostdlib",
-                "-t",
+                "-T",
                 "../tests/link.ld",
                 file_path.to_str().unwrap(),
             ],
