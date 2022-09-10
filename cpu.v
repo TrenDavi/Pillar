@@ -79,7 +79,8 @@ module cpu
       .ir_i (ir_o),
       .itype_o (itype_o),
       .wd_i (wd_o),
-      .wd_q_i (wd_q_o));
+      .wd_q_i (wd_q_o),
+      .pc_i (pc_i));
    
    // Arithmetic and logic unit
    alu alu_unit (

@@ -58,6 +58,7 @@ module alu
 
    wire [6:0] r7 = ir_i[31:25];
    wire [2:0] r3 = ir_i[14:12];
+   wire [10:0] br = pass[10:0] + pc_i[10:0];
 
    // Compute
    always @ (posedge clk) begin
@@ -172,7 +173,7 @@ module alu
                // BEQ
                if (r3 == `BEQ3) begin
                   if (a == b) begin
-                     y_o <= pc_i + pass;
+                     y_o <= br;
                   end
                   else
                      y_o <= pc_i + 4;
@@ -180,7 +181,7 @@ module alu
                // BNE
                if (r3 == `BNE3) begin
                   if (a != b) begin
-                     y_o <= pc_i + pass;
+                     y_o <= br;
                   end
                   else
                      y_o <= pc_i + 4;
@@ -188,7 +189,7 @@ module alu
                // BLT
                if (r3 == `BLT3) begin
                   if (a < b) begin
-                     y_o <= pc_i + pass;
+                     y_o <= br;
                   end
                   else
                      y_o <= pc_i + 4;
@@ -196,7 +197,7 @@ module alu
                // BGE
                if (r3 == `BGE3) begin
                   if (a >= b) begin
-                     y_o <= pc_i + pass;
+                     y_o <= br;
                   end
                   else
                      y_o <= pc_i + 4;
@@ -204,7 +205,7 @@ module alu
                // BLTU
                if (r3 == `BLTU3) begin
                   if (a < b) begin
-                     y_o <= pc_i + pass;
+                     y_o <= br;
                   end
                   else
                      y_o <= pc_i + 4;
@@ -212,7 +213,7 @@ module alu
                // BGEU
                if (r3 == `BGEU3) begin
                   if (a > b) begin
-                     y_o <= pc_i + pass;
+                     y_o <= br;
                   end
                   else
                      y_o <= pc_i + 4;

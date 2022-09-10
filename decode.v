@@ -17,7 +17,8 @@ module decode
    output reg [4:0] itype_o,
    // Register file write back
    input wire [31:0] wd_i,
-   input wire wd_q_i
+   input wire wd_q_i,
+   input wire pc_i
 );
    
    always @ (*) begin
@@ -40,7 +41,7 @@ module decode
       else if (ir_i[6:0] == `DECODE_B_TYPE) begin
          ra_o <= rfile[ir_i[19:15]];
          rb_o <= rfile[ir_i[24:20]];
-         pass_o <= {ir_i[31], ir_i[7], ir_i[30:25], ir_i[11:8], 1'b0};
+         pass_o <= {ir_i[7], ir_i[30:25], ir_i[11:8], 1'b0};
          itype_o <= `BTYPE; // Set B Type
       end
       else if (ir_i[6:0] == `DECODE_L_TYPE) begin

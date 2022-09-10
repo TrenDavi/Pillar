@@ -32,17 +32,19 @@ module write
       end
    end
 
-   always @ (posedge clk) begin
-      if (ir_i[6:0] == `DECODE_R_TYPE || 
-      ir_i[6:0] == `DECODE_I_TYPE || ir_i[6:0] == `DECODE_S_TYPE ||
-      ir_i[6:0] == `DECODE_L_TYPE || ir_i[6:0] == `DECODE_U_TYPE) begin
-         pc_wd_o <= pc_i + 4;
-      end
-      else if (ir_i[6:0] == `DECODE_UPC_TYPE) begin
-         pc_wd_o <= pc_i + 4;
-      end
-      else if (ir_i[6:0] == `DECODE_B_TYPE) begin
-         pc_wd_o <= wd_i;
+   always @ (posedge stage_i) begin
+      if (stage_i == 5) begin
+         if (ir_i[6:0] == `DECODE_R_TYPE || 
+         ir_i[6:0] == `DECODE_I_TYPE || ir_i[6:0] == `DECODE_S_TYPE ||
+         ir_i[6:0] == `DECODE_L_TYPE || ir_i[6:0] == `DECODE_U_TYPE) begin
+            pc_wd_o <= pc_i + 4;
+         end
+         else if (ir_i[6:0] == `DECODE_UPC_TYPE) begin
+            pc_wd_o <= pc_i + 4;
+         end
+         else if (ir_i[6:0] == `DECODE_B_TYPE) begin
+            pc_wd_o <= wd_i;
+         end
       end
    end
 
