@@ -1,7 +1,7 @@
-MEMORY
+MEMORY 
 {
-  ROM : ORIGIN = 0x00000000, LENGTH = 16777215
-  RAM : ORIGIN = 0x00FFFFFF, LENGTH = 16777215
+rom (rx)  : ORIGIN = 0, LENGTH = 65K
+ram (rw) : org = 0xFFFF, l = 65K
 }
 
 _start = main;
@@ -11,5 +11,5 @@ SECTIONS
   .text :
   {
     *(.text .text.*);
-  } > ROM
+  } > rom
 }

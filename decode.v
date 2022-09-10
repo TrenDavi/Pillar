@@ -19,6 +19,7 @@ module decode
    input wire [31:0] wd_i,
    input wire wd_q_i
 );
+   
    always @ (*) begin
       if (ir_i[6:0] == `DECODE_R_TYPE) begin
          ra_o <= rfile[ir_i[19:15]];
@@ -39,14 +40,14 @@ module decode
       else if (ir_i[6:0] == `DECODE_B_TYPE) begin
          ra_o <= rfile[ir_i[19:15]];
          rb_o <= rfile[ir_i[24:20]];
-         pass_o <= {ir_i[30:25], ir_i[11:6]};
+         pass_o <= {ir_i[7], ir_i[30:25], ir_i[11:8]};
          itype_o <= `BTYPE; // Set B Type
       end
       else if (ir_i[6:0] == `DECODE_L_TYPE) begin
          ra_o <= ir_i[31:20];
          rb_o <= rfile[ir_i[19:15]];
          itype_o <= `LTYPE; // Set L Type
-      end
+     end
       else if (ir_i[6:0] == `DECODE_U_TYPE) begin
          ra_o <= ir_i[31:12];
          itype_o <= `UTYPE; // Set U Type
@@ -67,6 +68,7 @@ module decode
   
    always @ (posedge wd_q_i) begin
       case (ir_i[11:7])
+         'd0: r1 = r1;
          'd1: r1 = wd_i;
          'd2: r2 = wd_i;
          'd3: r3 = wd_i;

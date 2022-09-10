@@ -21,7 +21,6 @@ module control
    input wire [4:0] itype_i,
    // Memory access
    output reg mem_we_o,
-   output wire [31:0] mem_o,
    // Write back
    output reg wd_q_o,
    output reg wd_q_readin_o

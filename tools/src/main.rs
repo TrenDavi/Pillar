@@ -67,6 +67,12 @@ fn main() -> Result<(), Box<dyn Error>> {
         let b2: u8 = ((section >> 8) & 0xff) as u8;
         let b1: u8 = (section & 0xff) as u8;
 
+        let s = 0x1ffff137;
+        let s4: u8 = ((s >> 24) & 0xff) as u8;
+        let s3: u8 = ((s >> 16) & 0xff) as u8;
+        let s2: u8 = ((s >> 8) & 0xff) as u8;
+        let s1: u8 = (s & 0xff) as u8;
+
         let mut p = Popen::create(
             &[
                 "./elf2hex",
@@ -99,11 +105,15 @@ fn main() -> Result<(), Box<dyn Error>> {
 
         writeln!(
             mainf,
-            "{}\n{}\n{}\n{}",
+            "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}",
             encode(vec!(b1)),
             encode(vec!(b2)),
             encode(vec!(b3)),
             encode(vec!(b4)),
+            encode(vec!(s1)),
+            encode(vec!(s2)),
+            encode(vec!(s3)),
+            encode(vec!(s4)),
         ).expect("Copy of reset vector failed");
 
         write!(mainf, "{}",  contents).expect("Copy of rom data failed");

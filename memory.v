@@ -18,7 +18,7 @@ module memory
 
    assign data_o = {ram[addr_i+3], ram[addr_i+2], ram[addr_i+1], ram[addr_i]};
 
-   reg [7:0] ram [2**`RAMADDRSPACE:0];
+   reg [7:0] ram [2 * 2**`RAMADDRSPACE:0];
 
    always @ (posedge we_i) begin
       ram[y_in] = pass_in[7:0];
@@ -30,7 +30,7 @@ module memory
    wire [2:0] op;
    assign op = ir_i[14:12];
 
-   always @ (posedge clk) begin
+   always @ (itype_i) begin
       if (itype_i == `LTYPE) begin
          if (op == `LB3) begin
          end
@@ -38,9 +38,9 @@ module memory
          end
          else if (op == `LW3) begin
             mem_o[7:0] <= ram[y_in];
-            mem_o[15:8] <= ram[y_in+2];
-            mem_o[23:16] <= ram[y_in+3];
-            mem_o[31:24] <= ram[y_in+4];
+            mem_o[15:8] <= ram[y_in+1];
+            mem_o[23:16] <= ram[y_in+2];
+            mem_o[31:24] <= ram[y_in+3];
          end
          else if (op == `LBU3) begin
          end
@@ -51,7 +51,8 @@ module memory
 
    integer i;
    initial begin
-      for (i = 2**`RAMADDRSPACE; i < 2*2**`RAMADDRSPACE; i = i + 1) begin
+      mem_o = 0;
+      for (i = 0; i < 2*2**`RAMADDRSPACE; i = i + 1) begin
          ram[i] = 0;
       end
       $readmemh(`FILE, ram, 0, 2**`RAMADDRSPACE);
