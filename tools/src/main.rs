@@ -60,7 +60,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         let bin_data = fs::read(file_path)?;
         let obj_file = object::File::parse(&*bin_data)?;
         let mut section: u32 = obj_file.entry().try_into().unwrap();
-        section += 4;
+        section += 8;
 
         let b4: u8 = ((section >> 24) & 0xff) as u8;
         let b3: u8 = ((section >> 16) & 0xff) as u8;

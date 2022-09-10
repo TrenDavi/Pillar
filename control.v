@@ -113,7 +113,7 @@ module control
             // Memory access
             if (itype_i == `RTYPE || itype_i == `ITYPE
                || itype_i == `STYPE || itype_i == `UTYPE
-               || itype_i == `LTYPE || itype_i == `JTYPE ||  itype_i == `JRTYPE) begin
+               || itype_i == `JTYPE ||  itype_i == `JRTYPE) begin
                wd_q_readin_o <= 1;
             end
             if (itype_i == `STYPE) begin
