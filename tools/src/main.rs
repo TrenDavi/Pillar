@@ -31,7 +31,7 @@ fn test_fn() -> Result<(), Box<dyn Error>> {
                 "-o",
                 "../tests/test.o",
                 "-nostdlib",
-                "-T",
+                "-t",
                 "../tests/link.ld",
                 file_path.to_str().unwrap(),
             ],
@@ -96,7 +96,7 @@ fn test_fn() -> Result<(), Box<dyn Error>> {
 
         writeln!(
             mainf,
-            "{}\n{}\n{}\n{}\n",
+            "{}\n{}\n{}\n{}",
             encode(vec!(b1)),
             encode(vec!(b2)),
             encode(vec!(b3)),
