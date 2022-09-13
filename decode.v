@@ -66,6 +66,13 @@ module decode
          pass_o <= 0;
       end
    end
+
+   always @ (rfile[31]) begin
+      // Exit sim code
+      if (rfile[31] == 57005) begin
+         $finish;
+      end
+   end
   
    always @ (posedge wd_q_i) begin
       case (ir_i[11:7])

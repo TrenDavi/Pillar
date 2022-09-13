@@ -10,7 +10,6 @@ module top ();
 
       // Reset CPU
       #10 reset = 0;
-      #1000 $finish;
    end
    
    // Clock
