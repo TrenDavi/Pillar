@@ -29,7 +29,12 @@ module decode
       end
       else if (ir_i[6:0] == `DECODE_I_TYPE) begin
          ra_o <= rfile[ir_i[19:15]];
-         rb_o <= ir_i[31:20];
+         if (ir_i[31] == 1) begin
+            rb_o <= {~20'b0, ir_i[31:20]};
+         end
+         else begin
+            rb_o <= {20'b0, ir_i[31:20]};
+         end
          itype_o <= `ITYPE; // Set I Type
       end
       else if (ir_i[6:0] == `DECODE_S_TYPE) begin

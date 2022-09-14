@@ -48,13 +48,22 @@ module write
       end
    end
 
-   wire [19:0] jal = {ir_i[19:12], ir_i[20], ir_i[30:21], 1'b0} + pc_i; 
    always @ (stage_i) begin
       if (stage_i == 5 && ir_i[6:0] == `JAL_OP) begin
-         pc_wd_o <= jal;
+         if (ir_i[31] == 1) begin
+            pc_wd_o <= {~20'b0, ir_i[19:12], ir_i[20], ir_i[30:21], 1'b0} + pc_i;
+         end
+         else begin
+            pc_wd_o <= {20'b0, ir_i[19:12], ir_i[20], ir_i[30:21], 1'b0} + pc_i;
+         end
       end
       else if (stage_i == 5 && ir_i[6:0] == `JALR_OP) begin
-         pc_wd_o <= wd_i + ir_i[30:20];
+         if (ir_i[31] == 1) begin
+            pc_wd_o <= wd_i + {~20'b0, ir_i[31:20]};
+         end
+         else begin
+            pc_wd_o <= wd_i + {20'b0, ir_i[31:20]};
+         end
       end
    end
 
