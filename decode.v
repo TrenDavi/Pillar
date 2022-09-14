@@ -38,7 +38,12 @@ module decode
          itype_o <= `ITYPE; // Set I Type
       end
       else if (ir_i[6:0] == `DECODE_S_TYPE) begin
-         ra_o <= {ir_i[31:25], ir_i[11:7]};
+         if (ir_i[31] == 1) begin
+            ra_o <= {~20'b0, ir_i[31:25], ir_i[11:7]};
+         end
+         else begin
+            ra_o <= {20'b0, ir_i[31:25], ir_i[11:7]};
+         end
          rb_o <= rfile[ir_i[19:15]];
          pass_o <= rfile[ir_i[24:20]];
          itype_o <= `STYPE; // Set S Type
@@ -46,11 +51,21 @@ module decode
       else if (ir_i[6:0] == `DECODE_B_TYPE) begin
          ra_o <= rfile[ir_i[19:15]];
          rb_o <= rfile[ir_i[24:20]];
-         pass_o <= {ir_i[7], ir_i[30:25], ir_i[11:8], 1'b0};
+         if (ir_i[31] == 1) begin
+            pass_o <= {~20'b0, ir_i[7], ir_i[30:25], ir_i[11:8], 1'b0};
+         end
+         else begin
+            pass_o <= {20'b0, ir_i[7], ir_i[30:25], ir_i[11:8], 1'b0};
+         end
          itype_o <= `BTYPE; // Set B Type
       end
       else if (ir_i[6:0] == `DECODE_L_TYPE) begin
-         ra_o <= ir_i[31:20];
+         if (ir_i[31] == 1) begin
+            ra_o <= {~20'b0, ir_i[31:25], ir_i[11:7]};
+         end
+         else begin
+            ra_o <= {20'b0, ir_i[31:25], ir_i[11:7]};
+         end
          rb_o <= rfile[ir_i[19:15]];
          itype_o <= `LTYPE; // Set L Type
      end
