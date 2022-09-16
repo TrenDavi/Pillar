@@ -43,7 +43,8 @@ module write
             pc_wd_o <= pc_i + 4;
          end
          else if (ir_i[6:0] == `DECODE_B_TYPE) begin
-            pc_wd_o <= wd_i;
+            $display("%h: %h", pc_i, wd_i + pc_i);
+            pc_wd_o = wd_i + pc_i;
          end
       end
    end
