@@ -22,7 +22,6 @@ module memory
    reg [7:0] ram [2 * 2**`RAMADDRSPACE:0];
 
    always @ (posedge we_i) begin
-      $display("Store %d at 0x%h", pass_in, y_in);
       ram[y_in] = pass_in[7:0];
       ram[y_in+1] = pass_in[15:8];
       ram[y_in+2] = pass_in[23:16];
@@ -43,7 +42,6 @@ module memory
             mem_o[15:8] = ram[y_in+1];
             mem_o[23:16] = ram[y_in+2];
             mem_o[31:24] = ram[y_in+3];
-            $display("Load %d at %h", mem_o, y_in);
          end
          else if (op == `LBU3) begin
          end
