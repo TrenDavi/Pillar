@@ -34,7 +34,9 @@ sudo apt install gtkwave
 Clone and Build
 ````
 git clone https://github.com/TrenDavi/Pillar.git
-cd Pillar
+cd Pillar/tools
+cargo test
+cd ..
 make simulate
 ````
 
