@@ -112,7 +112,7 @@ module control
          else if(stage_o == 4) begin
             // Memory access
             if (itype_i == `RTYPE || itype_i == `ITYPE
-               || itype_i == `STYPE || itype_i == `UTYPE
+               || itype_i == `UTYPE
                || itype_i == `JTYPE ||  itype_i == `JRTYPE) begin
                wd_q_readin_o <= 1;
             end

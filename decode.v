@@ -60,10 +60,10 @@ module decode
       end
       else if (ir_i[6:0] == `DECODE_L_TYPE) begin
          if (ir_i[31] == 1) begin
-            ra_o <= {~20'b0, ir_i[31:25], ir_i[11:7]};
+            ra_o <= {~20'b0, ir_i[31:20]};
          end
          else begin
-            ra_o <= {20'b0, ir_i[31:25], ir_i[11:7]};
+            ra_o <= {20'b0, ir_i[31:20]};
          end
          rb_o <= rfile[ir_i[19:15]];
          itype_o <= `LTYPE; // Set L Type
