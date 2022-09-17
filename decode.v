@@ -206,7 +206,7 @@ module decode
  
    always @ (negedge reset) begin
       r1  <= 32'b0;
-      r2  <= 'h12000;
+      r2  <= 'h7D7E0;
       r3  <= 32'b0;
       r4  <= 32'b0;
       r5  <= 32'b0;

@@ -1,7 +1,7 @@
 MEMORY 
 {
-rom (rx)  : ORIGIN = 0, LENGTH = 64K
-ram (rwx) : org = 0xFFFF, l = 64K
+rom (rx)  : ORIGIN = 0, LENGTH = 512K
+ram (rwx) : org = 0x7D008, l = 512K
 }
 
 _start = main;
@@ -16,6 +16,11 @@ SECTIONS
         *(.rodata*)
     } > rom
 
+    .stack (NOLOAD):
+    {
+        . = . + STACK_SIZE;
+    } > ram
+
     .bss (NOLOAD) :
     {
         *(.bss*)
@@ -26,13 +31,6 @@ SECTIONS
     {
         *(.data*);
     } > rom
-
-    .stack (NOLOAD):
-    {
-        . = ALIGN(8);
-        . = . + STACK_SIZE;
-        . = ALIGN(8);
-    } > ram
 
     _end = . ;
 }
