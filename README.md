@@ -34,13 +34,13 @@ sudo apt install gtkwave
 Clone and Build
 ````
 git clone https://github.com/TrenDavi/Pillar.git
-cd Pillar/tools
-cargo test
-cd ..
-make simulate
+cd Pillar
+make
+cd tools
+cargo run
 ````
 
 ## Debug in GTKWave
 ````
-gtkwave wave.vcd
+gtkwave tools/wave.vcd
 ````
