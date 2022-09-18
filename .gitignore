@@ -12,7 +12,7 @@ tests/*.hex
 *.swp
 
 # Output
-*.out
+tools/Pillar
 
 # VCD tracking
 *.vcd

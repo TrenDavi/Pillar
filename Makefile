@@ -21,16 +21,10 @@ COFLAGS = -o
 SFLAGS =
 SOUTPUT =
 
-COUTPUT = compiler.out
-
-simulate: $(COUTPUT)
-	$(SIMULATOR) $(COUTPUT) 
-
-$(TBOUTPUT): $(COUTPUT)
-	$(SIMULATOR) $(SOPTIONS) $(COUTPUT) $(SOUTPUT)
+COUTPUT = tools/Pillar
 
 $(COUTPUT): $(TESTBENCH) $(SRC)
-	$(COMPILER) $(COFLAGS) $(COUTPUT) $(TESTBENCH) $(SRC) -DFILE=\"tests\/test.hex\"
+	$(COMPILER) $(COFLAGS) $(COUTPUT) $(TESTBENCH) $(SRC)
 
 clean:
-	rm -r -f *.vcd *.out
+	rm -r -f tools/*.vcd *.out tests/*.o tests/*.hex tools/Pillar

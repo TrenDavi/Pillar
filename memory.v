@@ -56,6 +56,6 @@ module memory
       for (i = 0; i < 2*2**`RAMADDRSPACE; i = i + 1) begin
          ram[i] = 0;
       end
-      $readmemh(`FILE, ram, 0, 2**`RAMADDRSPACE);
+      $readmemh("../tests/test.hex", ram, 0, 2**`RAMADDRSPACE);
    end
 endmodule
