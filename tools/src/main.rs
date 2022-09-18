@@ -105,7 +105,7 @@ fn compile(file_path: &str) -> Result<(), Box<dyn Error>> {
             "-o",
             "../tests/test.o",
             "-nostdlib",
-            "-T",
+            "-t",
             "../tests/link.lds",
             file_path,
         ],
