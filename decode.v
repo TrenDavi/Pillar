@@ -89,7 +89,14 @@ module decode
    always @ (rfile[31]) begin
       // Exit sim code
       if (rfile[31] == 57005) begin
-         $finish;
+         if (rfile[30] == 0) begin
+            $display("Test passed");
+            $finish;
+         end
+         else begin
+            $display("Test failed");
+            $finish;
+         end
       end
    end
   
@@ -206,7 +213,7 @@ module decode
  
    always @ (negedge reset) begin
       r1  <= 32'b0;
-      r2  <= 'h7D7E0;
+      r2  <= 'h1F400;
       r3  <= 32'b0;
       r4  <= 32'b0;
       r5  <= 32'b0;

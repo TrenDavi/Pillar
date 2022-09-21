@@ -13,27 +13,6 @@ use subprocess::Popen;
 use subprocess::PopenConfig;
 use subprocess::Redirection;
 
-fn run() -> Result<(), Box<dyn Error>> {
-    let mut p = Popen::create(
-        &[
-            "vvp", "Pillar",
-        ],
-        PopenConfig {
-            stdout: Redirection::Pipe,
-            ..Default::default()
-        },
-    )?;
-
-    let (_out, _err) = p.communicate(None)?;
-
-    if let Some(_exit_status) = p.poll() {
-    } else {
-        p.terminate()?;
-    }
-
-    Ok(())
-}
-
 // Read the elf file, convert to hex characters,
 // and insert the reset vector
 fn hex() -> Result<(), Box<dyn Error>> {
@@ -133,11 +112,7 @@ fn main() {
    
     for file in glob_with("../tests/*.c", options).unwrap() {
        let file_path = file.as_ref().unwrap();
-       println!("Compiling {:?}", file_path);
        compile(file_path.to_str().unwrap()).expect("Failed to Compile");
-       println!("Hexing    {:?}", file_path);
        hex().expect("Failed to Hex");
-       println!("Running   {:?}", file_path);
-       run().expect("Failed to Run");
     }
 }
