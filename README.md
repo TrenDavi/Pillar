@@ -38,6 +38,7 @@ cd Pillar
 make
 cd tools
 cargo run
+vvp Pillar
 ````
 
 ## Debug in GTKWave
