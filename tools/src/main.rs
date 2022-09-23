@@ -9,6 +9,7 @@ use std::fs::File;
 use std::io::BufReader;
 use std::io::Read;
 use std::io::Write;
+use std::process;
 use subprocess::Popen;
 use subprocess::PopenConfig;
 use subprocess::Redirection;
@@ -89,16 +90,16 @@ fn compile(file_path: &str) -> Result<(), Box<dyn Error>> {
             file_path,
         ],
         PopenConfig {
-            stdout: Redirection::Pipe,
+            stdout: Redirection::None,
             ..Default::default()
         },
     )?;
 
-    let (_out, _err) = p.communicate(None)?;
+    let result = p.wait();
 
-    if let Some(_exit_status) = p.poll() {
-    } else {
-        p.terminate()?;
+    if result.unwrap().success() == false {
+        println!("Failed to compile: {:?}", file_path);
+        process::exit(1);
     }
 
     Ok(())
@@ -109,10 +110,10 @@ fn main() {
         case_sensitive: false,
         ..Default::default()
     };
-   
+
     for file in glob_with("../tests/*.c", options).unwrap() {
-       let file_path = file.as_ref().unwrap();
-       compile(file_path.to_str().unwrap()).expect("Failed to Compile");
-       hex().expect("Failed to Hex");
+        let file_path = file.as_ref().unwrap();
+        compile(file_path.to_str().unwrap()).expect("Failed to Compile");
+        hex().expect("Failed to Hex");
     }
 }
