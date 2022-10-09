@@ -91,11 +91,12 @@ module decode
       if (rfile[31] == 57005) begin
          if (rfile[30] == 0) begin
             $display("Test passed");
+            $finish;
          end
          else begin
             $display("Test failed");
             // Error
-            $exit_code1;
+            $finish;
          end
       end
    end
