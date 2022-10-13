@@ -21,10 +21,10 @@ COFLAGS = -o
 SFLAGS =
 SOUTPUT =
 
-COUTPUT = tools/Pillar
+COUTPUT = suite/Pillar
 
 $(COUTPUT): $(TESTBENCH) $(SRC)
 	$(COMPILER) $(COFLAGS) $(COUTPUT) $(TESTBENCH) $(SRC)
 
 clean:
-	rm -r -f tools/*.vcd *.out tests/*.o tests/*.hex tools/Pillar
+	rm -r -f suite/Pillar
